@@ -1,0 +1,14 @@
+package com.capgemini.contactfile.dao;
+
+public class ContactListFactory {
+	
+	public static ContactListServices instanceOfUserServices() {
+		ContactListServices services = new ContactListServicesImpl();
+		return services;
+	}
+	
+	public static ContactListDAO instanceOfContactListDAOImpl() {
+		ContactListDAO dao = new ContactListDAOImpl();
+		return dao;
+	}
+}

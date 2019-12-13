@@ -1,0 +1,8 @@
+package com.capgemini.contactfile.dao;
+
+public interface ContactListDAO {
+	public boolean showAllContacts();
+	public boolean searchContacts();
+	public boolean operateOnContacts();
+	
+}

@@ -1,0 +1,5 @@
+package com.capgemini.contactfile.dao;
+
+public class ContractListDAOImpl {
+
+}

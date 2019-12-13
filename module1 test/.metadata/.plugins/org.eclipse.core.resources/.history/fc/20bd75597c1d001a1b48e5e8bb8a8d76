@@ -1,0 +1,14 @@
+package com.capgemini.contactfile.dao;
+
+public class OperateOnContactFactory {
+	
+	public static  OperateOnContactServices instanceOfOperateOnContactServices() {
+		 OperateOnContactServices services = new OperateOncontactServicesImpl();
+		return services;
+	}
+	
+	public static  OperateOnContactDAO instanceOfOperateOnContactDAOImpl() {
+		 OperateOnContactDAO dao = new  OperateOnContactDAOImpl();
+		return dao;
+	}
+}

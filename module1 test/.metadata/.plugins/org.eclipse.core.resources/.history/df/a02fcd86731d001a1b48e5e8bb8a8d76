@@ -1,0 +1,12 @@
+package com.capgemini.contactfile.contact;
+
+import java.util.Scanner;
+
+public class OperateContact {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+	}
+
+}

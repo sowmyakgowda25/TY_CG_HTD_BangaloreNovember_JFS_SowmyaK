@@ -1,0 +1,33 @@
+package com.capgemini.contactfile.contact;
+
+import java.util.Scanner;
+
+public class OperateContact {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Press1 to add contact");
+		System.out.println("Press2 to delete contact");
+		System.out.println("press3 to edit contact");
+		
+		while(true) {
+			int choice = sc.nextInt();
+			switch(choice) {
+			case 1:
+				//System.out.println("Press 1 to Show all contacts");
+				ContactList.main(args);
+				break;
+			case 2:
+				//System.out.println("Press 2 to Search for contact");
+				OperateContact.main(args);
+				break;
+			case 3:
+				//System.out.println("Press 3 to Operate on contact");
+				SearchContact.main(args);
+				break;
+			case 4:
+				MainClass.main(args);
+			}
+	}
+	}
+}

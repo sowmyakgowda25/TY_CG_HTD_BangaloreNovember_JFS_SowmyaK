@@ -1,0 +1,65 @@
+package com.capgemini.contactfile.contact;
+
+import java.util.Scanner;
+
+import com.capgemini.contactfile.bean.ContactBean;
+import com.capgemini.contactfile.dao.OperateOnContactFactory;
+import com.capgemini.contactfile.dao.OperateOnContactServices;
+
+public class OperateContact {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		OperateOnContactServices services = OperateOnContactFactory.instanceOfOperateOnContactServices();
+		ContactBean user = new ContactBean();
+		System.out.println("Press1 to add contact");
+		System.out.println("Press2 to delete contact");
+		System.out.println("press3 to edit contact");
+
+		while(true) {
+			int choice = sc.nextInt();
+			switch(choice) {
+			case 1:
+				System.out.println("Enter username...");
+				user.setName(sc.next());
+				System.out.println("Enter userid..");
+				user.setNumber(Integer.parseInt(sc.nextLine()));
+
+				if(services.addcontact(user)) {
+					System.out.println("contact added...");
+				}else
+				{
+					System.err.println("something went wrong...");
+				}
+				sc.close();
+
+				break;
+			case 2:
+				System.out.println("Enter contact name...");
+				user.setName(sc.nextLine());
+				if(services.deletecontact(user.getName())) {
+					System.out.println(" deleted...");
+				}	else {
+					System.out.println("Something went wrong...");
+				}
+				break;
+//			case 3:
+//				System.out.println("Enter Contact name...");
+//				user.setName(sc.nextLine());
+//				System.out.println("Enter number..");
+//				user.setNumber(Long.parseLong(sc.nextLine()));
+//
+//				if(services.editContact()) {
+//					System.out.println("user upted...");
+//				}else
+//				{
+//					System.err.println("something went wrong...");
+//				}
+//				sc.close();
+				//break;
+			case 4:
+				MainClass.main(args);
+			}
+		}
+	}
+}

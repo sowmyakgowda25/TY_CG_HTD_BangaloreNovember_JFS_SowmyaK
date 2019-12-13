@@ -1,0 +1,13 @@
+package com.capgemini.contactfile.contact;
+
+public class ContactList {
+
+	public static void main(String[] args) {
+		
+		String Name;
+		long phoneNo;
+		
+		
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.capgemini.contactfile.dao;
+
+import java.util.List;
+
+import com.capgemini.contactfile.bean.ContactBean;
+
+public interface ContactListDAO {
+	//public boolean showAllContacts();
+	public boolean searchContacts();
+	public boolean operateOnContacts();
+	public List<ContactBean> getAllContact(ContactBean bean);
+	
+}

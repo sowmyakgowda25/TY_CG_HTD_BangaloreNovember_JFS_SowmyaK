@@ -1,0 +1,13 @@
+package com.capgemini.contactfile.contact;
+
+import java.util.Scanner;
+
+public class OperateContact {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Press1 to add contact");
+		System.out.println("Press2 to delete contact");
+		System.out.println("press3 to edit contact");
+	}
+}

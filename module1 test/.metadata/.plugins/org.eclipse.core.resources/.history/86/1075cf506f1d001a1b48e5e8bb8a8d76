@@ -1,0 +1,21 @@
+package com.capgemini.contactfile.dao;
+
+public class ContactListDAOImpl implements ContactListDAO {
+
+	@Override
+	public boolean showAllContacts() {
+		
+		return false;
+	}
+
+	@Override
+	public boolean searchContacts() {
+		return false;
+	}
+
+	@Override
+	public boolean operateOnContacts() {
+		return false;
+	}
+
+}

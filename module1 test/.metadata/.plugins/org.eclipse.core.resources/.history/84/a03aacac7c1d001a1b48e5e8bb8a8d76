@@ -1,0 +1,31 @@
+package com.capgemini.contactfile.dao;
+
+import java.util.List;
+
+import com.capgemini.contactfile.bean.ContactBean;
+
+public interface ContactListServices {
+	
+	public boolean searchContacts(String name);
+	public List<ContactBean> getAllContact(ContactBean bean);
+	
+}
+//@Override
+//public List<UserBean> getAllUsers() {
+//	return dao.getAllUsers();
+//}
+//
+//@Override
+//public boolean updateUser(int userid, String password, String email) {
+//	return dao.updateUser(userid,password,email);
+//}
+//
+//@Override
+//public boolean insertUser(UserBean user) {
+//	return dao.insertUser(user);
+//}
+//
+//@Override
+//public boolean deleteUser(int userid, String password) {
+//	return dao.deleteUser(userid,password);
+//}

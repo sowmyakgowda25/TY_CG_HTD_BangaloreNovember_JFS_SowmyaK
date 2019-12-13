@@ -1,0 +1,25 @@
+package com.capgemini.contactfile.contact;
+
+import java.util.Scanner;
+
+public class ContactList {
+
+	public static void main(String[] args) {
+		
+		Scanner sc= new Scanner(System.in);
+		String Name;
+		System.out.println("Enter the Contact Names");
+		sc.nextLine();
+		System.out.println("Enter the Contact Number");
+		sc.nextLine();
+		int count = 0;
+		if(count>0) {
+			System.out.println("All contacts added");
+		}else
+			{
+				System.out.println("Something went Wrong");
+			}
+		}
+	}
+
+
