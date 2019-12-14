@@ -1,0 +1,78 @@
+package com.capgmini.customer.app;
+
+import java.util.Scanner;
+
+import com.capgemini.factory.customer.CustomerFactory;
+import com.capgemini.fms.bean.CustomerBean;
+import com.capgemini.fms.dao.CustomerDAO;
+
+public class Customer {
+	public static void main(String[] args) {
+		CustomerBean bean = new CustomerBean();
+		CustomerDAO dao = CustomerFactory.getCustomerDAO();
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+		System.out.println("Press 1 to insert customer data");
+		System.out.println("Press 2 to Modify customer data");
+		System.out.println("Press 3 to delete customer data");
+		System.out.println("Press 4 to get all customer data");
+		
+		int choice = sc.nextInt();
+		switch(choice) {
+		case 1:
+			System.out.println("Enter customer id");
+			int id=sc.nextInt();
+			System.out.println("Enter customer name:");
+			String name=sc.next();
+			System.out.println("Enter customer streetAddress1:");
+			String address1=sc.next();
+			System.out.println("Enter customer streetAddress2:");
+			String address2=sc.next();
+			System.out.println("Enter customer town:");
+			String town=sc.next();
+			System.out.println("Enter customer postalCode:");
+			int postalCode=sc.nextInt();
+			System.out.println("Enter customer Email:");
+			String email=sc.next();
+			System.out.println("Enter customer TelePhoneNumber:");
+			long phone=sc.nextLong();
+			
+			bean.setCustId(id);
+			bean.setCustName(name);
+			bean.setStreetAddress1(address1);
+			bean.setStreetAddress2(address2);
+			bean.setTown(town);
+			bean.setPostalCode(postalCode);
+			bean.setEmail(email);
+			bean.setTelephoneNumber(phone);
+			
+			boolean check = dao.addCustomer(bean);
+			if(check) {
+				System.out.println("Customer added");
+			}else {
+				System.out.println("Customer id is not valid");
+			}
+			break;
+		case 2:
+			System.out.println("Enter id to modify the customer:");
+			int custid=sc.nextInt();
+			CustomerBean cb = dao.getCustomer(custid);
+			if(cb != null) {
+				System.out.println(cb.getCustId());
+				System.out.println(cb.getCustName());
+				System.out.println(cb.getTown());
+			}
+			
+			break;
+		case 3:System.out.println("Enter id to delete the customer:");
+				int customerId=sc.nextInt();
+				
+			break;
+		case 4:
+			break;
+		default: 
+			break;
+		}
+	}
+}
+}

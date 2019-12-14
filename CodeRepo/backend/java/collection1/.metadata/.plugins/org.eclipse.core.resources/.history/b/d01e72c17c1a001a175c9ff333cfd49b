@@ -1,0 +1,30 @@
+package com.capgemini.japhibernate.jpawithhibernateapp;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+import com.capgemini.hibernateapp.dto.Movie;
+
+public class InsertDemo {
+
+	public static void main(String[] args) {
+		
+		Movie movie=new Movie();
+		movie.setId(108);
+		movie.setName("The Jungle Book");
+		movie.setRating("Very Good");
+		
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Test");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityTransaction transaction=entityManager.getTransaction();
+		transaction.begin();
+		entityManager.persist(movie);
+		System.out.println("Record saved");
+		//transaction.commit();
+		entityManager.close();
+		
+	}
+
+}

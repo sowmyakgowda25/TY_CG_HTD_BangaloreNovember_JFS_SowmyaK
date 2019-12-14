@@ -1,0 +1,24 @@
+package com.capgmini.customer.app;
+
+import java.util.Scanner;
+
+import com.capgemini.factory.customer.ProductFactory;
+import com.capgemini.fms.bean.ProductBean;
+import com.capgemini.fms.dao.ProductDAO;
+
+
+
+public class Product {
+	public static void main(String[] args) {
+
+		ProductBean product = new ProductBean();
+		ProductDAO dao = ProductFactory.getProductDAO();
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.println("Press 1 to insert Product");
+			System.out.println("Press 2 to Modify Product");
+			System.out.println("Press 3 to delete Product");
+			System.out.println("Press 4 to get all the Product");
+		}
+	}
+}

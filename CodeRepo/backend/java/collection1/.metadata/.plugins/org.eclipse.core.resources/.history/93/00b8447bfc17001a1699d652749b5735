@@ -1,0 +1,7 @@
+package com.cap.ds.search;
+
+public class CustomArrayList {
+	public CustomarrayList() {
+		List<Object> list = (List<Object>) new CustomArrayList();
+	}
+}

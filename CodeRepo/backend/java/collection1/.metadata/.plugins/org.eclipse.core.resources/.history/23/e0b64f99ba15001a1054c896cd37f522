@@ -1,0 +1,100 @@
+package com.capgmini.customer.app;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.capgemini.factory.customer.CustomerFactory;
+import com.capgemini.fms.bean.CustomerBean;
+import com.capgemini.fms.dao.CustomerDAO;
+
+public class Customer {
+	public static void main(String[] args) {
+		CustomerBean bean = new CustomerBean();
+		CustomerDAO dao = CustomerFactory.getCustomerDAO();
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+		System.out.println("Press 1 to insert customer data");
+		System.out.println("Press 2 to Modify customer data");
+		System.out.println("Press 3 to delete customer data");
+		System.out.println("Press 4 to get all customer data");
+		
+		int choice = sc.nextInt();
+		switch(choice) {
+		case 1:
+			System.out.println("Enter customer id");
+			int id=sc.nextInt();
+			System.out.println("Enter customer name:");
+			String name=sc.next();
+			System.out.println("Enter customer streetAddress1:");
+			String address1=sc.next();
+			System.out.println("Enter customer streetAddress2:");
+			String address2=sc.next();
+			System.out.println("Enter customer town:");
+			String town=sc.next();
+			System.out.println("Enter customer postalCode:");
+			int postalCode=sc.nextInt();
+			System.out.println("Enter customer Email:");
+			String email=sc.next();
+			System.out.println("Enter customer TelePhoneNumber:");
+			long phone=sc.nextLong();
+			
+			bean.setCustId(id);
+			bean.setCustName(name);
+			bean.setStreetAddress1(address1);
+			bean.setStreetAddress2(address2);
+			bean.setTown(town);
+			bean.setPostalCode(postalCode);
+			bean.setEmail(email);
+			bean.setTelephoneNumber(phone);
+			
+			boolean check = dao.addCustomer(bean);
+			if(check) {
+				System.out.println("Customer added successfully...");
+			}else {
+				System.out.println("Customer id is not valid");
+			}
+			break;
+		case 2:
+			System.out.println("Enter id to modify the customer:");
+			int custid=sc.nextInt();
+			System.out.println("Enter the name:");
+			String name1=sc.next();
+			bean.setCustName(name1);
+			System.out.println("Enter the Email:");
+			String email1=sc.next();
+			bean.setEmail(email1);
+			System.out.println("Enter phone number:");
+			int phoneNumber=sc.nextInt();
+			bean.setTelephoneNumber(phoneNumber);
+			boolean check2= dao.modifyCustomer(custid);
+			if(check2) {
+				System.out.println("Customer modified successfully...");
+			}else{
+				System.out.println("customer not modified");
+			}
+			break;
+		case 3:System.out.println("Enter id and name to delete the customer:");
+				int customerId=sc.nextInt();
+				String customerName=sc.next();
+				boolean check1 = dao.deleteCustomer(customerId,customerName);
+				if(check1) {
+					System.out.println("Customer deleted successfully...");
+				}else {
+					System.out.println("Customer is not deleted ");
+				}
+			break;
+		case 4:List<CustomerBean> list = dao.getAllCustomers();
+		if(list != null){
+			for(CustomerBean user:list) {
+				System.out.println(user);
+			}
+		}
+			break;
+		default: 
+			break;
+		}
+	}
+}
+
+
+}

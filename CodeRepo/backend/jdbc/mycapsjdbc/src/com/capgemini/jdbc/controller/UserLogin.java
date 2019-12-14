@@ -1,0 +1,32 @@
+package com.capgemini.jdbc.controller;
+
+import java.util.Scanner;
+
+import com.capgemini.jdbc.bean.UserBean;
+import com.capgemini.jdbc.factory.UserFactory;
+import com.capgemini.jdbc.service.UserServices;
+
+public class UserLogin {
+
+	public static void main(String[] args) {
+		UserServices services = UserFactory.instanceOfUserServices();
+		
+		Scanner sc=new Scanner(System.in);
+		UserBean user = new UserBean();
+		System.out.println("Enter username...");
+		user.setUsername(sc.nextLine());
+		System.out.println("Enter password...");
+		user.setPassword(sc.nextLine());
+		
+		UserBean user1 = services.userLogin(user.getUsername(),user.getPassword());
+		
+		if(user1!=null) {
+			System.out.println("userid is"+user1.getUserid());
+			System.out.println("username is"+user1.getUsername());
+			System.out.println("email is"+user1.getEmail());
+		}else {
+			System.out.println("Something went wrong...");
+		}
+	}
+
+}

@@ -1,0 +1,51 @@
+package com.capgemini.fms.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms.bean.CustomerBean;
+
+public class CustomerDAOImpl implements CustomerDAO{
+	
+	private List<CustomerBean> customerBean = new ArrayList<CustomerBean>();
+
+	@Override
+	public boolean addCustomer(CustomerBean bean) {
+		for(CustomerBean cb:customerBean) {
+			if(cb.getCustId()==bean.getCustId()) {
+				return false;
+			}
+		}
+		customerBean.add(bean);
+		return true;
+	}
+
+	@Override
+	public boolean modifyCustomer(int custId) {
+//		for(CustomerBean cb:customerBean) {
+//			if(cb.getCustId()==custId) {
+//				return false;
+//			}
+//		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteCustomer(int custId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public CustomerBean getCustomer(int custId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CustomerBean> getAllCustomers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,54 @@
+package com.capgemini.fms.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms.bean.CustomerBean;
+import com.capgemini.fms.bean.ProductBean;
+
+public class ProductDAOImpl implements ProductDAO{
+	
+	private List<ProductBean> productBean = new ArrayList<ProductBean>();
+
+	@Override
+	public boolean addProduct(ProductBean bean) {
+		for(ProductBean cb:productBean) {
+			if(cb.getProductId()==bean.getProductId()) {
+				return false;
+			}
+		}
+		productBean.add(bean);
+		return true;
+	}
+
+	@Override
+	public boolean modifyProduct(int pId) {
+		for(ProductBean cb:productBean) {
+			if(cb.getProductId()==pId) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteProduct(int pId) {
+		ProductBean bean = null;
+		for(ProductBean cb : productBean) {
+			if(cb.getProductId()==pId) {
+				bean=cb;
+			}
+		}
+		if(bean!=null) {
+			productBean.remove(bean);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<ProductBean> getAllProduct(ProductBean bean) {
+		return productBean;
+	}
+	
+}

@@ -1,0 +1,18 @@
+package com.capgemini.fms.bean;
+
+import java.io.Serializable;
+
+public class ProductBean implements Serializable {
+	
+	private int pId;
+
+	public int getpId() {
+		return pId;
+	}
+
+	public void setpId(int pId) {
+		this.pId = pId;
+	}
+	
+	
+}

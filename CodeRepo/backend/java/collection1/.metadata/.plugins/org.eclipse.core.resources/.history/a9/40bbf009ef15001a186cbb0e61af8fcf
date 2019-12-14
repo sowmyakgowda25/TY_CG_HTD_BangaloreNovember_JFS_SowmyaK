@@ -1,0 +1,12 @@
+package com.capgemini.fms.dao;
+
+import java.util.List;
+
+import com.capgemini.fms.bean.ProductBean;
+
+public interface ProductDAO {
+	boolean addProduct(ProductBean bean);
+	boolean modifyProduct(int pId);
+	boolean deleteProduct(int pId);
+	public List<ProductBean> getAllProduct();
+}

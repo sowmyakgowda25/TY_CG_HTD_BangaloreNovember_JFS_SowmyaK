@@ -1,0 +1,11 @@
+package com.capgmini.customer.app;
+
+public class ContractorApp {
+	public static void main(String[] args) {
+		
+		
+		
+		System.out.println("Press 1 to insert contractor data");
+		System.out.println("Press 2 to delete contractor data");
+	}
+}

@@ -1,0 +1,12 @@
+package com.capgemini.fms.bean;
+
+import java.io.Serializable;
+
+public class ProductBean implements Serializable {
+	
+	private int productId;
+
+	
+	
+	
+}

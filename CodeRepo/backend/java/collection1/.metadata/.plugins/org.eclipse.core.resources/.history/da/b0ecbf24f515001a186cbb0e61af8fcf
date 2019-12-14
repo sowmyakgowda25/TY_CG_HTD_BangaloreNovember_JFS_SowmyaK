@@ -1,0 +1,24 @@
+package com.capgmini.customer.app;
+
+import java.util.Scanner;
+
+public class HomePage {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println(" 1.Contractor\n 2.Customer\n 3.Product\n 4.Home");
+		
+		int c=sc.nextInt();
+		switch(c) {
+		case 1:
+			System.out.println("Enter Contractor Details");
+			//String Contractor=sc.next();
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		default:
+			break;
+		}
+	}
+}

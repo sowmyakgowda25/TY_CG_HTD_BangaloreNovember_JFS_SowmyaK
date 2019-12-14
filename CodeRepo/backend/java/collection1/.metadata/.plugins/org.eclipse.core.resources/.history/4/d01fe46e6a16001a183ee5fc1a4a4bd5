@@ -1,0 +1,5 @@
+package com.capgemini.junit.junit_five;
+
+public interface Predicate {
+
+}

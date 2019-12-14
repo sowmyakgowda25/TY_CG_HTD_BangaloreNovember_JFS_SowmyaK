@@ -1,0 +1,8 @@
+package com.capgmini.customer.app;
+
+public class HomePage {
+	public static void main(String[] args) {
+		System.out.println(" 1.Contractor\n 2.Customer\n 3.Product\n 4.Home");
+		
+	}
+}

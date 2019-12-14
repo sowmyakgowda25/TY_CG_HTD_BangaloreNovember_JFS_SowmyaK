@@ -1,0 +1,59 @@
+package com.capgemini.junit.junit_five;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class CalTest{
+
+	@Test
+	public void test() {
+		Calculator c = new Calculator();
+		int i = c.add(5,15);
+		assertEquals(20,i);
+	}
+	@Test
+	void testAddForNegative() {
+		Calculator c = new Calculator();
+		int i = c.add(-2,5);
+		assertEquals(3,i);
+	}
+	@Test
+	public void test1() {
+		Calculator c = new Calculator();
+		int i = c.mul(5,5);
+		assertEquals(25,i);
+	}
+	@Test
+	void testMulForNegative() {
+		Calculator c = new Calculator();
+		int i = c.mul(-2,5);
+		assertEquals(-10,i);
+	}
+	@Test
+	public void testDiv() {
+		Calculator c = new Calculator();
+		assertThrows(ArithmeticException.class,()->c.div(10,0));
+	}
+	@Test
+	void testDivForNegative() {
+		Calculator c = new Calculator();
+		int i = c.div(-20,5);
+		assertEquals(-4,i);
+	}
+
+//	@Test
+//	void testFindLength() {
+//		Calculator c= new Calculator();
+//		int res = c.findLength("Udaypawar");
+//		assertEquals(9,res);
+//	}
+	@Test
+	void testfindLength() {
+		Calculator c= new Calculator();
+
+		assertThrows(NullPointerException.class,()->c.findLength(null));
+
+	}
+
+}

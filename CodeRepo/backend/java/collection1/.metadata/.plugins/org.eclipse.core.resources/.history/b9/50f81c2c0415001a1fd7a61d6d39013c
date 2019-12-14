@@ -1,0 +1,15 @@
+package com.io.FileOutputStream;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+public class FileOutput {
+	public static void main(String[] args) {
+		try {
+			FileOutputStream f1 = new FileOutputStream("uday.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

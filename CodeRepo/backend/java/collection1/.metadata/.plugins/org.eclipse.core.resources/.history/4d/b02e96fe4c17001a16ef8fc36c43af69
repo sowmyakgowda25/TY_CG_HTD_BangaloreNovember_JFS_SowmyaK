@@ -1,0 +1,41 @@
+package datastructure;
+
+import java.util.Scanner;
+
+public class MainClass {
+	
+	 
+	public static void main(String[] args) {
+		 {
+			 Scanner sc = new Scanner(System.in);
+			 int arr[]= new int[n];
+		        SelectionSort ss = new SelectionSort();
+		        BubbleSort bs = new BubbleSort();
+		        MergeSort ms = new MergeSort();
+		        InsertionSort is = new InsertionSort();
+		        QuickSort qs = new QuickSort();
+
+		        System.out.println("Enter the number of elements");
+		        int n=sc.nextInt();
+		        System.out.println("Enter the elements to be sorted");
+		        
+		        bs.bubbleSort(arr);
+		        bs.printArray(arr);
+		        
+		        ss.sort(arr);
+		        ss.printArray(arr);
+		        
+		        is.qsort(arr);
+		        is.printArray(arr);
+		        
+		     
+		        qs. printArray(arr); 
+		        qs.partition(arr, 0, 0);
+		        
+		        ms.printArray(arr);
+		        ms.merge(arr,3,2,4);
+		        
+		        
+		    }
+	}
+}

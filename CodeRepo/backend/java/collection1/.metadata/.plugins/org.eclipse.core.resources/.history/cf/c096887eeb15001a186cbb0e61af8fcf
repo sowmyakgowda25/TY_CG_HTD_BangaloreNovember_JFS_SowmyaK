@@ -1,0 +1,80 @@
+package com.capgmini.customer.app;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.capgemini.factory.customer.ContractorFactory;
+import com.capgemini.fms.bean.ContractorBean;
+import com.capgemini.fms.bean.CustomerBean;
+import com.capgemini.fms.dao.ContractorDAO;
+
+
+
+public class Contractor{
+	public static void main(String[] args) {
+
+		Scanner sc= new Scanner(System.in);
+		ContractorBean bean = new ContractorBean();
+		ContractorDAO dao = ContractorFactory.getContractorDAO();
+		while(true) {
+			System.out.println("Press 1 to insert contractor data");
+			System.out.println("Press 2 to delete contractor data");
+			int choice = sc.nextInt();
+			switch(choice) {
+			case 1:
+				System.out.println("Enter contractor number");
+				int conNum=sc.nextInt();
+				System.out.println("Enter contractor id");
+				int cId=sc.nextInt();
+				System.out.println("Enter product id");
+				int pId=sc.nextInt();
+				System.out.println("Enter haulier id");
+				int hId=sc.nextInt();
+				System.out.println("Enter product delivery date");
+				String date=sc.next();
+				System.out.println("Enter product delivery day");
+				String day=sc.next();
+				System.out.println("Enter product quantity:");
+				int qnty=sc.nextInt();
+
+				bean.setContractNo(conNum);
+				bean.setCustomerId(cId);
+				bean.setProductId(pId);
+				bean.setHaulierId(hId);
+				bean.setDeliveryDate(date);
+				bean.setDeliveryDay(day);
+				bean.setQuantity(qnty);
+
+				boolean check = dao.addContractor(bean);
+				if(check) {
+					System.out.println("Contractor added successfully...");
+				}else {
+					System.out.println("Contractor number is not valid");
+				}
+				break;
+			case 2:
+				System.out.println("Enter contractor number to delete the customer:");
+				int contractorNo=sc.nextInt();
+				boolean check1 = dao.deleteContractor(contractorNo);
+				if(check1) {
+					System.out.println("Contractor deleted successfully...");
+				}else {
+					System.out.println("Contractor is not deleted ");
+				}
+				break;
+			case 3:
+				List<ContractorBean> list = dao.getAllContractor(bean);
+				if(list != null){
+					for(ContractorBean user:list) {
+						System.out.println(user);
+					}
+				}else {
+					System.out.println("contractor not found");
+				}
+				break;
+			default: 
+				break;
+			}
+		}
+	}
+}

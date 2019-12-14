@@ -1,0 +1,5 @@
+package com.caggemini.hibernateapp.dto;
+
+public class Movie {
+
+}

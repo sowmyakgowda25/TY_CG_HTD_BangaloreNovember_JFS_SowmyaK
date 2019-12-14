@@ -1,0 +1,10 @@
+package com.capgemini.fms.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms.bean.ProductBean;
+
+public class ProductDAOImpl implements ProductDAO{
+	
+}

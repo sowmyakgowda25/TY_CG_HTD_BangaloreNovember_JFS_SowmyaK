@@ -1,0 +1,40 @@
+package com.capgemini.fms.app;
+
+import java.util.Scanner;
+
+import com.capgemini.fms.bean.ContractorBean;
+
+public class Contractor {
+	
+
+		public static void main(String[] args) {
+			ContractorBean user = new ContractorBean();
+			Scanner sc = new Scanner(System.in);
+
+			System.out.println("Enter contractor number..");
+			user.setContractorNum(Integer.parseInt(sc.nextLine()));
+			System.out.println("Enter customer id...");
+			user.setCustomerId(sc.nextInt());
+			System.out.println("Enter product id...");
+			user.setProductId(sc.nextInt());
+			System.out.println("Enter haulier id...");
+			user.setHaulierId(sc.nextInt());
+			System.out.println("Enter the delivery date...");
+			user.setDeliveryDate(sc.nextLine());
+			System.out.println("Enter the delivery day...");
+			user.setDeliveryDay(sc.nextLine());
+			System.out.println("Enter the quantity...");
+			user.setQuantity(sc.nextInt());
+			
+
+			if(services.insertUser(user)) {
+				System.out.println("user inserted...");
+			}else
+			{
+				System.err.println("something went wrong...");
+			}
+			sc.close();
+		}
+	}
+
+}

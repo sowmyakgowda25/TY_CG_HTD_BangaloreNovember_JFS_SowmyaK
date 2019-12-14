@@ -1,0 +1,49 @@
+package com.capgemini.fms.app;
+
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+import com.capgemini.fms.bean.ContractorBean;
+import java.sql.Driver;
+import java.sql.Connection;
+
+public class Contractor {
+
+	public static void main(String[] args) {
+		ContractorBean user = new ContractorBean();
+		Scanner sc = new Scanner(System.in);
+
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		ResultSet res=null;
+		try {
+			Driver driver=new com.capgemini.fms.bean.ContractorBean.jdbc.Driver();
+			DriverManager.registerDriver(driver);
+			System.out.println("Driver Loaded...");
+
+			String dbUrl="jdbc:mysql://127.0.0.1:3306/ty_cg_nov6";
+
+
+			System.out.println("Enter contractor number..");
+			user.setContractorNum(Integer.parseInt(sc.nextLine()));
+			System.out.println("Enter customer id...");
+			user.setCustomerId(sc.nextInt());
+			System.out.println("Enter product id...");
+			user.setProductId(sc.nextInt());
+			System.out.println("Enter haulier id...");
+			user.setHaulierId(sc.nextInt());
+			System.out.println("Enter the delivery date...");
+			user.setDeliveryDate(sc.nextLine());
+			System.out.println("Enter the delivery day...");
+			user.setDeliveryDay(sc.nextLine());
+			System.out.println("Enter the quantity...");
+			user.setQuantity(sc.nextInt());
+
+
+		}
+	}
+}
