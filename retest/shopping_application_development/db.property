@@ -1,0 +1,8 @@
+driverClass=com.mysql.jdbc.Driver
+dbUrl=jdbc:mysql://127.0.0.1:3306/flipkart
+dbUser=root
+dbPassword=root
+
+query=select * from product_info;
+querySearch=select * from product_info where productName=?;
+querySearch1=select * from product_info where productName=?;
