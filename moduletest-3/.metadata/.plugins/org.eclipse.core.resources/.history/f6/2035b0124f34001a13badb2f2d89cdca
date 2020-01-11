@@ -1,0 +1,5 @@
+package com.capgemini.testspringboot.dao;
+
+public class ProductInfoDAOImpl {
+
+}

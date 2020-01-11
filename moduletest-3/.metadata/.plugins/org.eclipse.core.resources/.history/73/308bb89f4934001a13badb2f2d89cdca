@@ -1,0 +1,13 @@
+package com.capgemini.testspringboot.dao;
+
+import com.capgemini.testspringboot.dto.UserInfo;
+
+public interface UserInfoDAO {
+	
+	public boolean addUser(UserInfo user);
+	
+	public UserInfo login(UserInfo credentials);
+	
+	public boolean updatePassword(int id, String password);
+
+}

@@ -1,0 +1,25 @@
+package com.capgemini.testspringboot.services;
+
+import com.capgemini.testspringboot.dto.UserInfo;
+
+public class UserInfoServicesImpl implements UserInfoServices{
+
+	@Override
+	public boolean addUser(UserInfo user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public UserInfo login(UserInfo credentials) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updatePassword(int id, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.capgemini.testspringboot.dto;
+
+public class OrderInfoResponse {
+
+}

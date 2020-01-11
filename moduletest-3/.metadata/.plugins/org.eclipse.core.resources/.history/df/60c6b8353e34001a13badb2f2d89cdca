@@ -1,0 +1,5 @@
+package com.capgemini.testspringboot.config;
+
+public class ORMConfig {
+
+}

@@ -1,0 +1,6 @@
+package com.capgemini.testspringboot.dao;
+
+public interface OrderInfoDAO {
+	
+	
+}

@@ -1,0 +1,9 @@
+1578725058324	Rename package 'com.example.testspringboot'
+1578725107382	Delete element
+1578727582019	Rename type 'ProductException'
+1578732428182	Rename type 'OrderInfoDAO'
+1578732449048	Rename type 'OrderInfoDAOImpl'
+1578732463069	Rename type 'ProductInfoDAO'
+1578732480897	Rename type 'ProductInfoDAOImpl'
+1578732493680	Rename type 'UserInfoDAO'
+1578732506024	Rename type 'UserInfoDAOImpl'

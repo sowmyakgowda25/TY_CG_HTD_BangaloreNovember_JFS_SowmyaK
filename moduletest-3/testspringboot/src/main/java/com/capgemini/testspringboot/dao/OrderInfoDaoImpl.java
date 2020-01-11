@@ -1,0 +1,42 @@
+package com.capgemini.testspringboot.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Repository;
+import com.capgemini.testspringboot.dto.OrderInfo;
+
+@Repository
+public class OrderInfoDaoImpl implements OrderInfoDao{
+	
+	@PersistenceUnit
+	EntityManagerFactory factory;
+
+	@Override
+	public List<OrderInfo> getAllOrders() {
+		EntityManager manager = factory.createEntityManager();
+		String getall = "from OrderInfo";
+		TypedQuery<OrderInfo> query = manager.createQuery(getall, OrderInfo.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public boolean addOrderToCart(OrderInfo order) {
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			manager.persist(order);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+}

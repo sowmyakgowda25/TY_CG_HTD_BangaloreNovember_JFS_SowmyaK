@@ -1,0 +1,5 @@
+package com.capgemini.testspringboot.controller;
+
+public class ProductInfoController {
+
+}
