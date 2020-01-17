@@ -1,0 +1,62 @@
+driverClass=com.mysql.jdbc.Driver
+dbUrl=jdbc:mysql://localhost:3306/ty_cg_nov6
+dbuser=root
+dbpassword=root
+
+query=select * from Contractor;
+insertQuery=insert into Contractor values(?,?,?,?,?,?,?);
+deleteQuery=delete from Contractor where contractorNum=? ;
+updateQuery=update Contractor set contractorNum=?,customerId=?,productId=?,haulierId=?,quantity=?;
+
+query1=select * from Customer;
+insertQuery1=insert into Customer values(?,?,?,?,?,?,?,?);
+deleteQuery1=delete from Customer where custId=?;
+updateQuery1=update Customer set custName=? where custId=?;
+updateQuery12=update Customer set streetAddress1=? where custId=?;
+updateQuery13=update Customer set streetAddress2=? where custId=?;
+updateQuery14=update Customer set town=? where custId=?;
+updateQuery16=update Customer set postalCode=? where custId=?;
+updateQuery15=update Customer set email=? where custId=?;
+updateQuery17=update Customer set telephoneNumber=? where custId=?;
+
+query2=select * from Product;
+insertQuery2=insert into Product values(?,?);
+deleteQuery2=delete from Product where productId=?;
+updateQuery2=update Product set productName=? where productId=?;
+
+query3=select * from Haulier
+insertQuery3=insert into Haulier values(?,?,?,?,?,?,?)
+deleteQuery3=delete from Haulier where haulierId=?
+updateQuery31=update Haulier set haulierName=? where haulierId=?
+updateQuery32=update Haulier set streetAddress=? where haulierId=?
+updateQuery33=update Haulier set postalCode=? where haulierId=?
+updateQuery34=update Haulier set town=? where haulierId=?
+updateQuery3=update Haulier set email=? where haulierId=?
+updateQuery3=update Haulier set telephoneNumber=? where haulierId=?
+
+
+adminQuery = select * from login where userName = ? and password = ? and type = ?;
+
+
+clientQuery1=select * from login where type="client"
+insertClient = insert into login values(?,?,?,?)
+deleteClient = delete from login where id = ?
+
+
+query4=select * from Land;
+insertQuery4=insert into Land values(?,?,?);
+deleteQuery4=delete from Land where landId=?;
+updateQuery41=update Land set landLocation=? where landId=?;
+updateQuery42=update Land set landAcre=? where landId=?;
+
+clientQuery=insert into login values(?,?,?);
+schedularQuery=insert into login values(?,?,?);
+
+queryOrder=select * from Order;
+insertOrder=insert into Order values(?,?,?,?,?,?);
+deleteOrder=delete from Order where orderNo=?;
+updateOrder1=update Order set customerName=? where orderNo=?;
+updateOrder2=update Order set productName=? where orderNo=?;
+updateOrder3=update Order set quantity=? where orderNo=?;
+updateOrder4=update Order set deliveryDate=? where orderNo=?;
+updateOrder5=update Order set haulierName=? where orderNo=?;

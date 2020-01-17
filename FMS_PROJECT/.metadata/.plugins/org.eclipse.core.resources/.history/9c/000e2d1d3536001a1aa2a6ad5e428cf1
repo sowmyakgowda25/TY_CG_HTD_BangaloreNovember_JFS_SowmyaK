@@ -1,0 +1,25 @@
+package com.capgemini.fms_jpahibernate.service;
+
+import java.util.List;
+
+import com.capgemini.fms_jpahibernate.dao.ContractorDAO;
+import com.capgemini.fms_jpahibernate.dto.ContractorBean;
+import com.capgemini.fms_jpahibernate.factory.ContractorFactory;
+
+public class ContractorServicesImpl implements ContractorServices {
+	ContractorDAO dao = ContractorFactory.instanceOfContractorDAOImpl();
+	
+	public boolean addContractor(ContractorBean bean) {
+		return dao.addContractor(bean);
+	}
+
+	public boolean deleteContractor(int contractNo) {
+		return dao.deleteContractor(contractNo);
+	}
+
+	public List<ContractorBean> getAllContractor(ContractorBean bean) {
+		return dao.getAllContractor(bean);
+	}
+	
+	
+}

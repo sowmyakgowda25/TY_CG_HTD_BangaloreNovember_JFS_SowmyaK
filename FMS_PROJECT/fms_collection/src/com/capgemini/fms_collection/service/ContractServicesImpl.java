@@ -1,0 +1,30 @@
+package com.capgemini.fms_collection.service;
+
+import java.util.List;
+
+import com.capgemini.fms_collection.bean.ContractorBean;
+import com.capgemini.fms_collection.dao.ContractDao;
+import com.capgemini.fms_collection.exception.FmsException;
+import com.capgemini.fms_collection.factory.ContractFactory;
+
+public class ContractServicesImpl implements ContractServices {
+	
+	ContractDao dao = ContractFactory.instanceOfContractorDAOImpl();
+
+	@Override
+	public boolean addContractor(ContractorBean bean) throws FmsException {
+		return dao.addContractor(bean);
+	}
+
+	@Override
+	public boolean deleteContractor(int contractNo) throws FmsException {
+		return dao.deleteContractor(contractNo);
+	}
+
+	@Override
+	public List<ContractorBean> getAllContractor(ContractorBean bean) {
+		return dao.getAllContractor(bean);
+	}
+
+	
+}

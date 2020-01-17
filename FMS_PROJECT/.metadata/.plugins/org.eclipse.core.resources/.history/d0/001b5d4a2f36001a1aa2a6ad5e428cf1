@@ -1,0 +1,13 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import java.util.List;
+
+import com.capgemini.fms.dto.HaulierBean;
+
+
+public interface HaulierDAO {
+	public boolean addHaulier(HaulierBean bean);
+	public boolean modifyHaulier(int haulierId);
+	public boolean deleteHaulier(int haulierId);
+	public List<HaulierBean> getAllHaulier(HaulierBean bean);
+}

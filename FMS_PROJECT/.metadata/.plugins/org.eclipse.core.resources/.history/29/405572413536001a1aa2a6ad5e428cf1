@@ -1,0 +1,49 @@
+package com.capgemini.fms_jpahibernate.service;
+
+import java.util.List;
+
+import com.capgemini.fms_jpahibernate.dao.HaulierDAO;
+import com.capgemini.fms_jpahibernate.dto.HaulierBean;
+import com.capgemini.fms_jpahibernate.exception.FmsException;
+import com.capgemini.fms_jpahibernate.factory.HaulierFactory;
+
+public class HaulierServicesImpl implements HaulierServices{
+	HaulierDAO dao = HaulierFactory.instanceOfHaulierDAOImpl();
+
+	public boolean addHaulier(HaulierBean bean) throws FmsException {
+		return dao.addHaulier(bean);
+	}
+
+	public boolean deleteHaulier(int haulierId) throws FmsException {
+		return dao.deleteHaulier(haulierId);
+	}
+
+	public List<HaulierBean> getAllHaulier(HaulierBean bean)  {
+		return dao.getAllHaulier(bean);
+	}
+
+	public boolean modifyHaulierName(int haulierId, String haulierName) throws FmsException{
+		return dao.modifyHaulierName(haulierId, haulierName);
+	}
+
+	public boolean modifyHaulierAddress(int haulierId, String streetAddress) throws FmsException {
+		return dao.modifyHaulierAddress(haulierId, streetAddress);
+	}
+
+	public boolean modifyHaulierPostalCode(int haulierId, int postalCode) throws FmsException {
+		return dao.modifyHaulierPostalCode(haulierId, postalCode);
+	}
+
+	public boolean modifyHaulierTown(int haulierId, String town) throws FmsException{
+		return dao.modifyHaulierTown(haulierId, town);
+	}
+
+	public boolean modifyHaulierEmail(int haulierId, String email) throws FmsException{
+		return dao.modifyHaulierEmail(haulierId, email);
+	}
+
+	public boolean modifyHaulierTelePhoneNum(int haulierId, long number) throws FmsException{
+		return dao.modifyHaulierTelePhoneNum(haulierId, number);
+	}
+
+}

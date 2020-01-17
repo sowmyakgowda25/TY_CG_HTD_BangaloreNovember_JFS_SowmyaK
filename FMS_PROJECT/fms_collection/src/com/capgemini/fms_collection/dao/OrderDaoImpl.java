@@ -1,0 +1,122 @@
+package com.capgemini.fms_collection.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms_collection.bean.OrderBean;
+import com.capgemini.fms_collection.exception.FmsException;
+
+public class OrderDaoImpl implements OrderDao {
+	private List<OrderBean> orderBean = new ArrayList<OrderBean>();
+
+	@Override
+	public boolean addOrder(OrderBean bean) throws FmsException {
+		try {
+			for (OrderBean cb : orderBean) {
+				if (cb.getOrderNo() == bean.getOrderNo()) {
+					return false;
+				}
+			}
+			orderBean.add(bean);
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return true;
+	}
+
+
+	@Override
+	public boolean modifyCustomerName(int orderNo, String customerName) throws FmsException {
+		try {
+			for (OrderBean cb : orderBean) {
+				if (cb.getOrderNo() == orderNo) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyProductName(int orderNo, String productName) throws FmsException {
+		try {
+			for (OrderBean cb : orderBean) {
+				if (cb.getOrderNo() == orderNo) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyOrderQuantity(int orderNo, int quantity) throws FmsException {
+		try {
+			for (OrderBean cb : orderBean) {
+				if (cb.getOrderNo() == orderNo) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyDeliverDate(int orderNo, String deliveryDate) throws FmsException {
+		try {
+			for (OrderBean cb : orderBean) {
+				if (cb.getOrderNo() == orderNo) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyHaulierName(int orderNo, String haulierName) throws FmsException {
+		try {
+			for (OrderBean cb : orderBean) {
+				if (cb.getOrderNo() == orderNo) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteOrder(int orderNo) throws FmsException {
+		try {
+			OrderBean bean = null;
+			for (OrderBean cb : orderBean) {
+				if (cb.getOrderNo() == orderNo) {
+					bean = cb;
+				}
+			}
+			if (bean != null) {
+				orderBean.remove(bean);
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id does not exist");
+		}
+		return false;
+	}
+
+	@Override
+	public List<OrderBean> getAllOrders() {
+		return orderBean;
+	}
+
+}

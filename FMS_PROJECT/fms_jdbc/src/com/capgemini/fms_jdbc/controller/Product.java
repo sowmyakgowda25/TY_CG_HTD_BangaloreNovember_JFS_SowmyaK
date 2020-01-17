@@ -1,0 +1,160 @@
+package com.capgemini.fms_jdbc.controller;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.capgemini.fms_jdbc.bean.ProductBean;
+import com.capgemini.fms_jdbc.exception.FmsException;
+import com.capgemini.fms_jdbc.factory.ProductFactory;
+import com.capgemini.fms_jdbc.services.ProductServices;
+import com.capgemini.fms_jdbc.validations.Validations;
+
+public class Product {
+	public static void product(String[] args) {
+
+		ProductBean user = new ProductBean();
+		ProductServices services = ProductFactory.instanceOfProductServices();
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("Press 1 to insert Product");
+			System.out.println("Press 2 to Modify Product");
+			System.out.println("Press 3 to delete Product");
+			System.out.println("Press 4 to get all the Product");
+			System.out.println("Press 5 to client");
+
+			String choice = null;
+			String in = "switch";
+			while (in == "switch") {
+				choice = sc.next();
+				if (Validations.isValidId(choice)) {
+					in = "st";
+				} else {
+					System.out.println("Please Enter digits only");
+				}
+			}
+
+			switch (Integer.parseInt(choice)) {
+			case 1:
+//				System.out.println("Enter productId..");
+//				user.setProductId(Integer.parseInt(sc.next()));
+				String prId = "bc";
+				while (prId == "bc") {
+					System.out.println("Enter Product Id");
+					String id = sc.next();
+					if (Validations.isValidId(id)) {
+						user.setProductId(Integer.parseInt(id));
+						prId = "ac";
+					} else {
+						System.out.println("Please Enter Correct Id");
+					}
+				}
+
+//				System.out.println("Enter product Name");
+//				user.setProductName(sc.next());
+
+				String prName = "door";
+				while (prName == "door") {
+					System.out.println("Enter Product Name");
+					String name = sc.next();
+					if (Validations.isValidName(name)) {
+						user.setProductName(name);
+						prName = "doors";
+					} else {
+						System.out.println("Please Enter Correct Name");
+					}
+				}
+
+				boolean check = false;
+				try {
+					check = services.addProduct(user);
+				} catch (FmsException e) {
+					System.out.println(e.toString());
+				}
+				if (check) {
+					System.out.println("Product added successfully...");
+				} else {
+					System.out.println("Product Id already exist");
+				}
+				break;
+			case 2:
+				int i7=0;
+				boolean c7 = true;
+				while(c7==true) {
+					System.out.println("Enter Product id");
+					String id=sc.next();
+					if(Validations.isValidId(id)) {
+						i7 = Integer.parseInt(id);
+						c7=false;
+						user.setProductId(i7);
+					}else {
+						System.out.println("Please Enter digits only..");
+					}
+				}
+
+
+//				System.out.println("Enter Product Name...");
+//				user.setProductName(sc.next());
+				String pName = "door";
+				while (pName == "door") {
+					System.out.println("Enter the Product Name ");
+					String proName = sc.next();
+					if (Validations.isValidName(proName)) {
+						user.setProductName(proName);
+						pName = "doors";
+					} else {
+						System.out.println("Please Enter Correct Name");
+					}
+				}
+				if (services.modifyProduct(user)) {
+					System.out.println("Product updated...");
+				} else {
+					System.err.println("something went wrong...");
+				}
+				break;
+			case 3:
+				int i=0;
+				boolean c = true;
+				while(c==true) {
+					System.out.println("Enter product id to delete");
+					String id=sc.next();
+					if(Validations.isValidId(id)) {
+						i = Integer.parseInt(id);
+						c=false;
+						user.setProductId(i);
+					}else {
+						System.out.println("Please Enter digits only");
+					}
+				}
+				boolean b1 = false;
+				try {
+					b1 = services.deleteProduct(i);
+				} catch (FmsException e) {
+					System.out.println(e.toString());
+				}
+				if (b1) {
+					System.out.println("Product deleted...");
+				} else {
+					System.out.println("Id not exist...");
+				}
+				break;
+			case 4:
+				List<ProductBean> list = services.getAllProduct();
+				if (list != null) {
+					for (ProductBean bean : list) {
+						System.out.println(bean);
+					}
+				} else {
+					System.out.println("Product not found");
+				}
+				break;
+			case 5:
+				Client.client(args);
+				break;
+			default:
+				System.err.println("Entered Wrong field...");
+				break;
+			}
+		}
+	}
+}

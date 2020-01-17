@@ -1,0 +1,235 @@
+package com.capgemini.fms_jdbc.dao;
+
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import com.capgemini.fms_jdbc.bean.CustomerBean;
+import com.capgemini.fms_jdbc.exception.FmsException;
+
+public class CustomerDaoImpl implements CustomerDao {
+
+	//private List<CustomerBean> customerBean = new ArrayList<CustomerBean>();
+	FileReader reader = null;
+	Properties prop = null;
+	CustomerBean user = new CustomerBean();
+
+	public CustomerDaoImpl() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			reader = new FileReader("db.properties");
+			prop = new Properties();
+			prop.load(reader);
+			Class.forName(prop.getProperty("driverClass"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean addCustomer(CustomerBean user) throws FmsException {
+
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("insertQuery1"));) {
+			pstmt.setInt(1, user.getCustId());
+			pstmt.setString(2, user.getCustName());
+			pstmt.setString(3, user.getStreetAddress1());
+			pstmt.setString(4, user.getStreetAddress2());
+			pstmt.setString(5, user.getTown());
+			pstmt.setInt(6, user.getPostalCode());
+			pstmt.setString(7, user.getEmail());
+			pstmt.setLong(8, user.getTelephoneNumber());
+
+			@SuppressWarnings("unused")
+			int count = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return true;
+	}
+
+	@Override
+	public boolean deleteCustomer(int custId) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("deleteQuery1"));) {
+			pstmt.setInt(1, custId);
+
+			int count = pstmt.executeUpdate();
+
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public List<CustomerBean> getAllCustomers() {
+		List<CustomerBean> list = new ArrayList<CustomerBean>();
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(prop.getProperty("query1"))) {
+			while (rs.next()) {
+				user = new CustomerBean();
+				user.setCustId(rs.getInt(1));
+				user.setCustName(rs.getString(2));
+				user.setStreetAddress1(rs.getString(3));
+				user.setStreetAddress2(rs.getString(4));
+				user.setTown(rs.getString(5));
+				user.setPostalCode(rs.getInt(6));
+				user.setEmail(rs.getString(7));
+				user.setTelephoneNumber(rs.getLong(8));
+				list.add(user);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean modifyCustomerName(int custId, String custName) throws FmsException {
+
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateQuery1"));) {
+			pstmt.setInt(2, custId);
+			pstmt.setString(1, custName);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerAddress1(int custId, String streetAddress1) throws FmsException {
+
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateQuery12"));) {
+			pstmt.setInt(2, custId);
+			pstmt.setString(1, streetAddress1);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerAddress2(int custId, String streetAddress2) throws FmsException {
+
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateQuery13"));) {
+			pstmt.setInt(2, custId);
+			pstmt.setString(1, streetAddress2);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerTown(int custId, String town) throws FmsException {
+
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateQuery14"));) {
+			pstmt.setInt(2, custId);
+			pstmt.setString(1, town);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerEmail(int custId, String email) throws FmsException {
+
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateQuery15"));) {
+			pstmt.setInt(2, custId);
+			pstmt.setString(1, email);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerPostalCode(int custId, int postalCode) throws FmsException {
+
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateQuery16"));) {
+			pstmt.setInt(2, custId);
+			pstmt.setInt(1, postalCode);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerTelePhoneNum(int custId, long number) throws FmsException {
+
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateQuery17"));) {
+			pstmt.setInt(2, custId);
+			pstmt.setLong(1, number);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+}

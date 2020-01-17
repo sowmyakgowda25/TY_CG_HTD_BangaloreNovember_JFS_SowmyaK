@@ -1,0 +1,27 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import java.util.List;
+
+public class HaulierDAOImpl implements HaulierDAO{
+
+	public boolean addHaulier(com.capgemini.fms.dto.HaulierBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean modifyHaulier(int haulierId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean deleteHaulier(int haulierId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public List<com.capgemini.fms.dto.HaulierBean> getAllHaulier(
+			com.capgemini.fms.dto.HaulierBean bean) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

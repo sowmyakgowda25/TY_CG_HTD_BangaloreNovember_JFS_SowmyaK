@@ -1,0 +1,67 @@
+package com.capgemini.fms_collection.controller;
+
+import java.util.Scanner;
+
+import com.capgemini.fms_collection.exception.FmsException;
+import com.capgemini.fms_collection.factory.ClientFactory;
+import com.capgemini.fms_collection.service.ClientServices;
+import com.capgemini.fms_collection.validations.Validations;
+
+public class Client {
+	public static void client(String[] args) {
+		ClientServices services = ClientFactory.instanceOfClientServices();
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter Client Name to logged in");
+		String name = sc.next();
+		System.out.println("Enter Password");
+		String pwd = sc.next();
+
+		try {
+			if (services.clientLogin(name,pwd)) {
+				System.out.println("Client logged in Successfully...");
+
+				while (true) {
+					System.out.println("Press 1 for Customer Opertaions");
+					System.out.println("Press 2 for Contract Operations");
+					System.out.println("Press 3 for Product Details");
+					System.out.println("Press 4 for Back to Home");
+
+					String choice = null;
+					String i = "switch";
+					while(i=="switch") {
+						choice = sc.next();
+						if (Validations.isValidId(choice)) {
+							i = "st";
+						} else {
+							System.out.println("Please Enter digits only");
+						}
+					}
+
+					switch (Integer.parseInt(choice)) {
+					case 1:
+						Customer.customer(args);
+						break;
+					case 2:
+						Contractor.contract(args);
+						break;
+					case 3:
+						Product.product(args);
+						break;
+					case 4:
+						HomePage.main(args);
+						break;
+					default:
+						System.err.println("Entered Wrong field...");
+						break;
+					}
+				}
+			} else {
+				System.out.println("Logged in failed");
+			}
+		}catch(FmsException e) {
+			System.out.println(e.toString());
+		}
+	}
+}

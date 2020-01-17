@@ -1,0 +1,17 @@
+package com.capgemini.fms_springrest.exception;
+
+public class CustomerException extends RuntimeException{
+	
+	private String message;
+
+	public CustomerException(String message) {
+		super(message);
+	}
+
+	@Override
+	public String toString() {
+		return message;
+	}
+	
+	
+}

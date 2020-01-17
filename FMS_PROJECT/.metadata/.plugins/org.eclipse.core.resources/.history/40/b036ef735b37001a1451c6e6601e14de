@@ -1,0 +1,19 @@
+package com.capgemini.fms_jdbc.factory;
+
+import com.capgemini.fms_jdbc.dao.AdminDAO;
+import com.capgemini.fms_jdbc.dao.AdminDAOImpl;
+import com.capgemini.fms_jdbc.services.AdminService;
+import com.capgemini.fms_jdbc.services.AdminServicesImpl;
+
+public class AdminFactory {
+
+	public static AdminService instanceOfAdminServices() {
+		AdminService services = new AdminServicesImpl();
+		return services;
+	}
+	public static AdminDAO instanceOfAdminDAOImpl() {
+		AdminDAO dao = new AdminDAOImpl();
+		return dao;
+	}
+
+}

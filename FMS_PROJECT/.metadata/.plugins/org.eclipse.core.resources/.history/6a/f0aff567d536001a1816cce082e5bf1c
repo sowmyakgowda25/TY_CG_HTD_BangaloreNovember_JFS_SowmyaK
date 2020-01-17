@@ -1,0 +1,51 @@
+package com.capgemini.fms_collection.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms_collection.bean.ContractorBean;
+import com.capgemini.fms_collection.exception.FmsException;
+
+public class ContractorDAOImpl implements ContractDAO{
+	private List<ContractorBean> contractorBean = new ArrayList<ContractorBean>();
+
+	@Override
+	public boolean addContractor(ContractorBean bean) throws FmsException {
+		try {
+		for(ContractorBean cb:contractorBean) {
+			if(cb.getContractNo()==bean.getContractNo()) {
+				return false;
+			}
+		}
+		contractorBean.add(bean);
+		}catch(Exception e) {
+			throw new FmsException("Number not exist");
+		}
+		return true;
+	}
+
+	@Override
+	public boolean deleteContractor(int contractNo) throws FmsException {
+		try {
+		 ContractorBean bean = null;
+			for(ContractorBean cb:contractorBean) {
+				if(cb.getContractNo()==contractNo) {
+					bean=cb;
+				}
+			}
+			if(bean!=null) {
+				contractorBean.remove(bean);
+				return true;
+			}
+		}catch(Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return false;
+	}
+
+	@Override
+	public List<ContractorBean> getAllContractor(ContractorBean bean) {
+		return contractorBean;
+	}
+
+}

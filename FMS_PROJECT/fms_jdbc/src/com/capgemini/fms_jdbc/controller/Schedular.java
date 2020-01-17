@@ -1,0 +1,59 @@
+package com.capgemini.fms_jdbc.controller;
+
+import java.util.Scanner;
+
+import com.capgemini.fms_jdbc.bean.LoginBean;
+import com.capgemini.fms_jdbc.exception.FmsException;
+import com.capgemini.fms_jdbc.factory.AdminFactory;
+import com.capgemini.fms_jdbc.services.AdminService;
+import com.capgemini.fms_jdbc.validations.Validations;
+
+public class Schedular {
+	public static void schedular(String[] args) {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		LoginBean bean = new LoginBean();
+		AdminService services = AdminFactory.instanceOfAdminServices();
+
+		System.out.println("Press 1 to Schedular Login");
+		System.out.println("press 2 for Home Page");
+		String choice1 = null;
+		String in = "switch";
+		while (in == "switch") {
+			choice1 = sc.next();
+			if (Validations.isValidId(choice1)) {
+				in = "st";
+			} else {
+				System.out.println("Please Enter digits only");
+			}
+		}
+
+		switch (Integer.parseInt(choice1)) {
+		case 1:
+			System.out.println("Enter SchedularName");
+			String aName = sc.next();
+			System.out.println("Enter Password");
+			String pwd = sc.next();
+			System.out.println("Enter the type");
+			String type = sc.next();
+
+			bean.setAdminName(aName);
+			bean.setPassword(pwd);
+			bean.setType(type);
+
+			try {
+				if (services.loginAdmin(aName, pwd)) {
+					System.out.println("Schedular logged in Successfully...");
+
+					Contract.contract(args);
+
+				}else {
+					System.out.println("logged in failed");
+				}
+			}catch(FmsException e) {
+				System.out.println(e.toString());
+			}
+			break;
+		}
+	}
+}

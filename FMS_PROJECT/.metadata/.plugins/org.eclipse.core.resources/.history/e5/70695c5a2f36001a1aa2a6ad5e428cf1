@@ -1,0 +1,21 @@
+package com.capgemini.fms_jpahibernate.factory;
+
+import com.capgemini.fms.service.ProductServices;
+import com.capgemini.fms.service.ProductServicesImpl;
+import com.capgemini.fms_jpahibernate.dao.ProductDAO;
+import com.capgemini.fms_jpahibernate.dao.ProductDAOImpl;
+
+public class ProductFactory {
+	
+	public static ProductServices instanceOfProductServices() {
+		ProductServices services = new ProductServicesImpl();
+		return services;
+	}
+	public static ProductDAO instanceOfProductDAOImpl() {
+		ProductDAO dao = new ProductDAOImpl();
+		return dao;
+	}
+	public static ProductDAO getProductDAO() {
+		return null;
+	}
+}

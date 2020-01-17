@@ -1,0 +1,20 @@
+package com.capgemini.fms_collection.factory;
+
+import com.capgemini.fms_collection.dao.OrderDAO;
+import com.capgemini.fms_collection.dao.OrderDAOImpl;
+import com.capgemini.fms_collection.service.OrderServices;
+import com.capgemini.fms_collection.service.OrderServicesImpl;
+
+public class OrderFactory {
+	public static OrderServices instanceOfOrderServices() {
+		OrderServices services = new OrderServicesImpl();
+		return services;
+	}
+	public static OrderDAO instanceOfOrderDAOImpl() {
+		OrderDAO dao = new OrderDAOImpl();
+		return dao;
+	}
+	public static OrderDAO getOrderDAO() {
+		return null;
+	}
+}

@@ -1,0 +1,11 @@
+package com.capgemini.fms_springboot.services;
+
+import com.capgemini.fms_springboot.dto.LoginBean;
+
+public interface AdminService {
+	
+	boolean adminRegister(LoginBean admin);
+	boolean adminLogin(String name ,String password, String type);
+	boolean clientSignUp(LoginBean client);
+	boolean schedularSignUp(LoginBean schedular);
+}

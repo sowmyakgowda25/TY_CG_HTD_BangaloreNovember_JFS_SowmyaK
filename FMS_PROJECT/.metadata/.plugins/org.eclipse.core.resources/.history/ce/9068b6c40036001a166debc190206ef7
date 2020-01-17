@@ -1,0 +1,10 @@
+package com.capgemini.fms_springrest.services;
+
+import com.capgemini.fms_springrest.dto.LoginBean;
+
+public interface AdminService {
+	
+	LoginBean adminLogin(String name ,String password ,String type);
+	boolean clientSignUp(LoginBean admin);
+	boolean schedularSignUp(LoginBean admin);
+}

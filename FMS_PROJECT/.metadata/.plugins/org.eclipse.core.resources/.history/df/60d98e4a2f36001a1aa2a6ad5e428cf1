@@ -1,0 +1,13 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import java.util.List;
+
+import com.capgemini.fms.dto.LandBean;
+
+public interface LandDAO {
+	
+	public boolean addLand(LandBean bean);
+	public boolean modifyLand(int landId);
+	public boolean deleteLand(int landId);
+	public List<LandBean> getAllLand(LandBean bean);
+}

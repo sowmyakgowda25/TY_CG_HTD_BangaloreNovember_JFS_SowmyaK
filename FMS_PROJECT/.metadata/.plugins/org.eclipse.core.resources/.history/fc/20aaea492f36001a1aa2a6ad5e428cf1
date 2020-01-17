@@ -1,0 +1,15 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+
+public class AdminDAOImpl implements AdminDAO{
+
+	public boolean loginAdmin(com.capgemini.fms.dto.AdminBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean signupAdmin(com.capgemini.fms.dto.AdminBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}

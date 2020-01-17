@@ -1,0 +1,17 @@
+package com.capgemini.fms.service;
+
+import com.capgemini.fms_jpahibernate.dto.AdminBean;
+
+public class AdminServiceImpl implements AdminService{
+
+	public boolean loginAdmin(AdminBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean signupAdmin(AdminBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

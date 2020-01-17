@@ -1,0 +1,60 @@
+package com.capgemini.fms_collection.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms_collection.bean.LoginBean;
+import com.capgemini.fms_collection.exception.FmsException;
+
+public class AdminDaoImpl implements AdminDao {
+	private List<LoginBean> loginBean = new ArrayList<LoginBean>();
+
+	@Override
+	public boolean loginAdmin(String adminName, String password ) throws FmsException {
+		String user = "sowmya";
+		String pass = "qwerty";
+		try {
+				if (adminName.equals(user)) {
+					if (password.equals(pass)) {
+						//System.out.println("login successful...");
+						return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Enter valid details");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean clientSignUp(LoginBean bean) throws FmsException {
+		try {
+			for(LoginBean cb:loginBean) {
+				if(cb.getAdminName()==bean.getAdminName()) {
+					return false;
+				}
+			}
+			loginBean.add(bean);
+			}catch(Exception e) {
+				throw new FmsException("Invalid Details");
+			}
+			return true;
+		}
+	
+
+	@Override
+	public boolean schedularSignUp(LoginBean bean) throws FmsException {
+		try {
+			for(LoginBean cb:loginBean) {
+				if(cb.getAdminName()==bean.getAdminName()) {
+					return false;
+				}
+			}
+			loginBean.add(bean);
+			}catch(Exception e) {
+				throw new FmsException("Invalid Details");
+			}
+			return true;
+	}
+
+}

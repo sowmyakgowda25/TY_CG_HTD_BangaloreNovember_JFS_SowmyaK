@@ -1,0 +1,22 @@
+package com.capgemini.fms_collection.factory;
+
+import com.capgemini.fms_collection.dao.CustomerDAO;
+import com.capgemini.fms_collection.dao.CustomerDAOImpl;
+import com.capgemini.fms_collection.service.CustomerServices;
+import com.capgemini.fms_collection.service.CustomerServicesImpl;
+
+public class CustomerFactory {
+	
+	public static CustomerServices instanceOfCustomerServices() {
+		CustomerServices services = new CustomerServicesImpl();
+		return services;
+	}
+	public static CustomerDAO instanceOfCustomerDAOImpl() {
+		CustomerDAO dao = new CustomerDAOImpl();
+		return dao;
+	}
+	public static CustomerDAO getCustomerDAO() {
+		return null;
+	}
+
+}

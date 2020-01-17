@@ -1,0 +1,12 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import java.util.List;
+
+import com.capgemini.fms_jpahibernate.dto.ContractorBean;
+
+public interface ContractorDAO {
+	
+	boolean addContractor(ContractorBean bean) throws FmsException;
+	boolean deleteContractor(int contractNo) throws FmsException;
+	public List<ContractorBean> getAllContractor(ContractorBean bean);
+}

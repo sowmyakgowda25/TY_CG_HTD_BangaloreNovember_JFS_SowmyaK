@@ -1,0 +1,34 @@
+package com.capgemini.fms_springrest.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.capgemini.fms_springrest.dao.AdminDao;
+import com.capgemini.fms_springrest.dto.LoginBean;
+
+@Service
+public class AdminServicesImpl implements AdminService{
+	
+	@Autowired
+	private AdminDao dao;
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
+	
+	public boolean adminLogin(String name, String password,String type) {
+		return dao.adminLogin(name, password , type);
+	}
+
+	public boolean clientSignUp(LoginBean admin) {
+		return dao.clientSignUp(admin);
+	}
+
+	public boolean schedularSignUp(LoginBean admin) {
+		return dao.schedularSignUp(admin);
+	}
+
+	@Override
+	public boolean clientLogin(String name, String password, String type) {
+		return dao.clientLogin(name, password, type);
+	}
+}

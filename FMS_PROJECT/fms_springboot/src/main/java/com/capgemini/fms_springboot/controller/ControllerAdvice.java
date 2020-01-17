@@ -1,0 +1,75 @@
+package com.capgemini.fms_springboot.controller;
+
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.capgemini.fms_springboot.dto.ContractResponse;
+import com.capgemini.fms_springboot.dto.CustomerResponse;
+import com.capgemini.fms_springboot.dto.HaulierResponse;
+import com.capgemini.fms_springboot.dto.LandResponse;
+import com.capgemini.fms_springboot.dto.LoginResponse;
+import com.capgemini.fms_springboot.dto.ProductResponse;
+import com.capgemini.fms_springboot.exception.ContractException;
+import com.capgemini.fms_springboot.exception.CustomerException;
+import com.capgemini.fms_springboot.exception.HaulierException;
+import com.capgemini.fms_springboot.exception.LandException;
+import com.capgemini.fms_springboot.exception.LoginException;
+import com.capgemini.fms_springboot.exception.ProductException;
+
+@RestControllerAdvice
+public class ControllerAdvice {
+	
+	@ExceptionHandler(ContractException.class)
+	public ContractResponse handleContractorException(ContractException e) {
+		ContractResponse response = new ContractResponse();
+		response.setStatusCode(501);
+		response.setMessage("Exception");
+		response.setDiscription(e.getMessage());
+		return response;
+	}
+	
+	@ExceptionHandler(CustomerException.class)
+	public CustomerResponse handleCustomerException(CustomerException e) {
+		CustomerResponse response = new CustomerResponse();
+		response.setStatusCode(501);
+		response.setMessage("Exception");
+		response.setDescription(e.getMessage());
+		return response;
+	}
+	
+	@ExceptionHandler(LoginException.class)
+	public LoginResponse handleLoginException(LoginException e) {
+		LoginResponse response = new LoginResponse();
+		response.setStatusCode(501);
+		response.setMessage("Exception");
+		response.setDiscription(e.getMessage());
+		return response;
+	}
+	
+	@ExceptionHandler(HaulierException.class)
+	public HaulierResponse handleHaulierException(HaulierException e) {
+		HaulierResponse response = new HaulierResponse();
+		response.setStatusCode(501);
+		response.setMessage("Exception");
+		response.setDescription(e.getMessage());
+		return response;
+	}
+	
+	@ExceptionHandler(LandException.class)
+	public LandResponse handleLandException(LandException e) {
+		LandResponse response = new LandResponse();
+		response.setStatusCode(501);
+		response.setMessage("Exception");
+		response.setDiscription(e.getMessage());
+		return response;
+	}
+	
+	@ExceptionHandler(ProductException.class)
+	public ProductResponse handleProductException(ProductException e) {
+		ProductResponse response = new ProductResponse();
+		response.setStatusCode(501);
+		response.setMessage("Exception");
+		response.setDiscription(e.getMessage());
+		return response;
+	}
+}

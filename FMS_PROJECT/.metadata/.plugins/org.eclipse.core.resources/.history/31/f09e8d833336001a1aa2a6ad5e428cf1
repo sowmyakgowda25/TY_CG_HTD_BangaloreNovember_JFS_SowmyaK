@@ -1,0 +1,9 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import com.capgemini.fms_jpahibernate.dto.AdminBean;
+
+public interface AdminDAO {
+	boolean loginAdmin(String name ,String password, String type) throws FmsException;
+	boolean clientSignUp(LoginBean admin) throws FmsException;
+	boolean schedularSignUp(LoginBean admin) throws FmsException;
+}

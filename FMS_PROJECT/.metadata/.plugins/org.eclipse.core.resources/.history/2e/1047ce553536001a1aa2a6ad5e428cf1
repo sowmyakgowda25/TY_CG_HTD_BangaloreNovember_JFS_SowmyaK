@@ -1,0 +1,21 @@
+package com.capgemini.fms_jpahibernate.factory;
+
+import com.capgemini.fms_jpahibernate.dao.AdminDAO;
+import com.capgemini.fms_jpahibernate.dao.AdminDAOImpl;
+import com.capgemini.fms_jpahibernate.service.AdminService;
+import com.capgemini.fms_jpahibernate.service.AdminServiceImpl;
+
+public class AdminFactory {
+
+	public static AdminService instanceOfAdminServices() {
+		AdminService services = new AdminServiceImpl();
+		return services;
+	}
+	public static AdminDAO instanceOfAdminDAOImpl() {
+		AdminDAO dao = new AdminDAOImpl();
+		return dao;
+	}
+	public static AdminDAO getAdminDAO() {
+		return null;
+	}
+}

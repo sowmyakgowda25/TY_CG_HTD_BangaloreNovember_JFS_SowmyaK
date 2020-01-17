@@ -1,0 +1,28 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import java.util.List;
+
+public class ProductDAOImpl implements ProductDAO{
+
+	public boolean addProduct(com.capgemini.fms_jpahibernate.dto.ProductBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean modifyProduct(int pId, String pName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean deleteProduct(int pId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public List<com.capgemini.fms_jpahibernate.dto.ProductBean> getAllProduct(
+			com.capgemini.fms_jpahibernate.dto.ProductBean bean) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

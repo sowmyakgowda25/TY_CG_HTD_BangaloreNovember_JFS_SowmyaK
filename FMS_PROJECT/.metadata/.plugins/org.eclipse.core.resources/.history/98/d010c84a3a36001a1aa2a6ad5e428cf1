@@ -1,0 +1,37 @@
+package com.capgemini.fms_springrest.services;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.capgemini.fms_springrest.dao.LandDao;
+import com.capgemini.fms_springrest.dto.LandBean;
+
+@Service
+public class LandServicesImpl implements LandServices{
+
+	@Autowired
+	private LandDao dao;
+	private LandBean bean;
+
+	public boolean addLand(LandBean bean){
+		return dao.addLand(bean);
+	}
+
+	public boolean deleteLand(int landId){
+		return dao.deleteLand(landId);
+	}
+
+	public boolean modifyLandLoc(int landId, String landLocation) {
+		return dao.modifyLandLoc(landId, landLocation);
+	}
+
+	public boolean modifyLandAcre(int landId, double landAcre) {
+		return dao.modifyLandAcre(landId, landAcre);
+	}
+
+	@Override
+	public List<LandBean> getAllLand() {
+		return dao.getAllLand(bean);
+	}
+}

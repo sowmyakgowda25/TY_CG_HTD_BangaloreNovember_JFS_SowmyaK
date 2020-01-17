@@ -1,0 +1,186 @@
+package com.capgemini.fms_springboot.dao;
+
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
+
+import com.capgemini.fms_springboot.dto.HaulierBean;
+import com.capgemini.fms_springrest.exception.HaulierException;
+
+@Repository
+public class HaulierDaoImpl implements HaulierDao {
+
+	@PersistenceUnit
+	EntityManagerFactory entityManagerFactory;
+	EntityManager entityManager = null;
+	EntityTransaction transaction = null;
+
+	public boolean addHaulier(HaulierBean bean) {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			entityManager.persist(bean);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new HaulierException("Id already exist");
+		}
+		// transaction.commit();
+		entityManager.close();
+		return true;
+	}
+
+	public boolean deleteHaulier(int haulierId) {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			HaulierBean record = entityManager.find(HaulierBean.class, haulierId);
+			entityManager.remove(record);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new HaulierException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+
+	public List<HaulierBean> getAllHaulier() {
+		try {
+			EntityManager entityManager = entityManagerFactory.createEntityManager();
+			String jpql = "from HaulierBean";
+			Query query = entityManager.createQuery(jpql);
+			@SuppressWarnings("unchecked")
+			List<HaulierBean> record = query.getResultList();
+			return record;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new HaulierException("No Data Found");
+		}
+//		entityManager.close();
+//		return null;
+	}
+
+	public boolean modifyHaulierName(int haulierId, String haulierName) {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			HaulierBean record = entityManager.find(HaulierBean.class, haulierId);
+			// entityManager.remove(record);
+			record.setHaulierId(haulierId);
+			record.setHaulierName(haulierName);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new HaulierException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+
+	public boolean modifyHaulierAddress(int haulierId, String streetAddress) {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			HaulierBean record = entityManager.find(HaulierBean.class, haulierId);
+			// entityManager.remove(record);
+			record.setHaulierId(haulierId);
+			record.setStreetAddress(streetAddress);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new HaulierException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+
+	}
+
+	public boolean modifyHaulierPostalCode(int haulierId, int postalCode) {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			HaulierBean record = entityManager.find(HaulierBean.class, haulierId);
+			// entityManager.remove(record);
+			record.setHaulierId(haulierId);
+			record.setPostalCode(postalCode);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new HaulierException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+
+	public boolean modifyHaulierTown(int haulierId, String town) {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			HaulierBean record = entityManager.find(HaulierBean.class, haulierId);
+			// entityManager.remove(record);
+			record.setHaulierId(haulierId);
+			record.setTown(town);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new HaulierException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+
+	public boolean modifyHaulierEmail(int haulierId, String email) {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			HaulierBean record = entityManager.find(HaulierBean.class, haulierId);
+			// entityManager.remove(record);
+			record.setHaulierId(haulierId);
+			record.setEmail(email);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new HaulierException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+
+	public boolean modifyHaulierTelePhoneNum(int haulierId, long number) {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			HaulierBean record = entityManager.find(HaulierBean.class, haulierId);
+			// entityManager.remove(record);
+			record.setHaulierId(haulierId);
+			record.setTelephoneNumber(number);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new HaulierException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+
+}

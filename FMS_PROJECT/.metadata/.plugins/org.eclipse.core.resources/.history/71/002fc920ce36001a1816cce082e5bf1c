@@ -1,0 +1,16 @@
+package com.capgemini.fms_collection.exception;
+
+public class FmsException extends Exception {
+
+	private String message;
+
+	public FmsException(String message) {
+		super(message);
+	}
+
+	@Override
+	public String toString() {
+		return message;
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.capgemini.fms_collection.factory;
+
+import com.capgemini.fms_collection.dao.HaulierDAO;
+import com.capgemini.fms_collection.dao.HaulierDAOImpl;
+import com.capgemini.fms_collection.service.HaulierServices;
+import com.capgemini.fms_collection.service.HaulierServicesImpl;
+
+public class HaulierFactory {
+	
+	public static HaulierServices instanceOfHaulierServices() {
+		HaulierServices services = new HaulierServicesImpl();
+		return services;
+	}
+	public static HaulierDAO instanceOfHaulierDAOImpl() {
+		HaulierDAO dao = new HaulierDAOImpl();
+		return dao;
+	}
+	public static HaulierDAO getHaulierDAO() {
+		return null;
+	}
+}

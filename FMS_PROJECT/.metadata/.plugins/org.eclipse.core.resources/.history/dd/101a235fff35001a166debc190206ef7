@@ -1,0 +1,78 @@
+package com.capgemini.fms_springrest.dao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.TypedQuery;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Repository;
+import com.capgemini.fms_springrest.dto.LoginBean;
+import com.capgemini.fms_springrest.exception.LoginException;
+
+@Repository
+public class AdminDaoImpl implements AdminDao {
+
+	@PersistenceUnit
+	private EntityManagerFactory entityManagerFactory;
+	EntityManager entityManager = null;
+	EntityTransaction transaction = null;
+
+	LoginBean admin = new LoginBean();
+
+	public LoginBean adminLogin(String name, String password, String type) {
+
+		EntityManager manager = entityManagerFactory.createEntityManager();
+		String jpql = "from LoginBean where adminName=:name, password=:pwd, type=:type";
+		TypedQuery<LoginBean> query = manager.createQuery(jpql,LoginBean.class);
+		query.setParameter("name", name);
+		query.setParameter("pwd", password);
+		query.setParameter("type", type);
+		//query.setParameter("password", password);
+		try {
+			LoginBean bean = query.getSingleResult();
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			if(encoder.matches(password, bean.getPassword())){
+				return bean;
+			}else {
+//				return null;
+				throw new LoginException("email alredy exists");
+			}
+			//return bean
+		}catch(Exception e) {
+			throw new LoginException("email alredy exists");
+		}
+	}
+
+	public boolean clientSignUp(LoginBean admin) {
+		try {
+			// entityManagerFactory = Persistence.createEntityManagerFactory("fms");
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			entityManager.persist(admin);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+			//throw new FmsException("Enter valid details");
+		}
+		entityManager.close();
+		return true;
+	}
+
+	public boolean schedularSignUp(LoginBean admin) {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			entityManager.persist(admin);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+//			throw new FmsException("Enter valid details");
+		}
+		entityManager.close();
+		return true;
+	}
+
+}

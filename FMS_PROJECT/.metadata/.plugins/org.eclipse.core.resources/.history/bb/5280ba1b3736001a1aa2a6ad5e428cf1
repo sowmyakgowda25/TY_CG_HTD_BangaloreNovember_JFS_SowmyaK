@@ -1,0 +1,105 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import com.capgemini.fms_jpahibernate.dto.LandBean;
+import com.capgemini.fms_jpahibernate.exception.FmsException;
+
+public class LandDAOImpl implements LandDAO{
+	EntityManager entityManager=null;
+	EntityTransaction transaction=null;
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("fms");
+
+	public boolean addLand(LandBean bean) throws FmsException {
+
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			entityManager.persist(bean);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new FmsException("Id already exist");
+		}
+		//transaction.commit();
+		entityManager.close();
+		return true;
+	}
+
+	public boolean deleteLand(int landId) throws FmsException {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			LandBean record = entityManager.find(LandBean.class, landId);
+			entityManager.remove(record);
+			transaction.commit();
+			return true;
+		}catch(Exception e) {
+			transaction.rollback();
+			throw new FmsException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+
+	public List<LandBean> getAllLand(LandBean bean) {
+		try {
+			EntityManager entityManager= entityManagerFactory.createEntityManager();
+			String jpql="from LandBean";
+			Query query = entityManager.createQuery(jpql);
+			List<LandBean> record = query.getResultList();
+			return record;
+		}catch(Exception e) {
+			e.printStackTrace();
+			transaction.rollback();
+		}
+		entityManager.close();
+		return null;
+	}
+
+	public boolean modifyLandLoc(int landId, String landLocation) throws FmsException {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			LandBean record = entityManager.find(LandBean.class, landId);
+			//entityManager.remove(record);
+			record.setLandId(landId);
+			record.setLandLocation(landLocation);
+			transaction.commit();
+			return true;
+		}catch(Exception e) {
+			transaction.rollback();
+			throw new FmsException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+
+	public boolean modifyLandAcre(int landId, double landAcre) throws FmsException {
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			LandBean record = entityManager.find(LandBean.class, landId);
+			//entityManager.remove(record);
+			record.setLandId(landId);
+			record.setLandAcre(landAcre);
+			transaction.commit();
+			return true;
+		}catch(Exception e) {
+			transaction.rollback();
+			throw new FmsException("Id doesn't exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+}

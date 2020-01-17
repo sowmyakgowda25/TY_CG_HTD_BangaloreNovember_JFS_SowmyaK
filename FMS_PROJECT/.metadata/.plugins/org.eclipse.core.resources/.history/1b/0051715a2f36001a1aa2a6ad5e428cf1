@@ -1,0 +1,28 @@
+package com.capgemini.fms.service;
+
+import java.util.List;
+
+import com.capgemini.fms_jpahibernate.dto.CustomerBean;
+
+public class CustomerServicesImpl implements CustomerServices{
+
+	public boolean addCustomer(CustomerBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean modifyCustomer(int custId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean deleteCustomer(int custId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public List<com.capgemini.fms_jpahibernate.dto.CustomerBean> getAllCustomers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

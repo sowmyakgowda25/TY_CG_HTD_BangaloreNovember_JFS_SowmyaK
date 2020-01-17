@@ -1,0 +1,125 @@
+package com.capgemini.fms_jpahibernate.validations;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Validations {
+
+	public static boolean isValidEmail(String email) 
+	{ 
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+				"[a-zA-Z0-9_+&*-]+)*@" + 
+				"(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+				"A-Z]{2,7}$"; 
+
+		Pattern pat = Pattern.compile(emailRegex); 
+		if (email == null) 
+			return false; 
+		return pat.matcher(email).matches(); 
+	}
+
+	//User name
+	public static boolean isValidName(String name) 
+	{ 
+		String emailRegex = "^[a-zA-Z]*$";
+		Pattern pat = Pattern.compile(emailRegex); 
+		if (name == null) 
+			return false; 
+		return pat.matcher(name).matches(); 
+	}
+	
+//	private static Pattern namePattern = Pattern.compile("^[a-zA-Z]*$");
+//	public static boolean validateName(String name) 
+//	{ 
+//		Matcher matcher = namePattern.matcher(name); 
+//		if(matcher.matches()) {
+//			return true;
+//		}
+//		return false;
+//	} 
+
+	//String Value
+	private static Pattern stringPattern = Pattern.compile("^[a-zA-Z0-9]*$");
+	public static boolean validateString(String word) 
+	{ 
+		Matcher matcher = stringPattern.matcher(word); 
+		if(matcher.matches()) {
+			return true;
+		}
+		return false;
+	} 
+
+	//Date validation
+	public static boolean isValidDate(String date) 
+	{ 
+		String regex = "^(1[0-2]|0[1-9])/(3[01]"
+				+ "|[12][0-9]|0[1-9])/[0-9]{4}$"; 
+		Pattern pattern = Pattern.compile(regex); 
+		Matcher matcher = pattern.matcher((CharSequence)date); 
+		return matcher.matches(); 
+	} 
+
+	//phone number
+	public static boolean isValidPhoneNo(String phone) {
+		String regex =("(0/91)?[7-9][0-9]{9}"); 
+		Pattern pattern = Pattern.compile(regex); 
+		Matcher matcher = pattern.matcher(phone); 
+		return matcher.matches(); 
+	} 
+	
+	//postal code
+	public static boolean isValidPostal(String postalCode) {
+		String regex =("[1-9][0-9]{5}"); 
+		Pattern pattern = Pattern.compile(regex); 
+		Matcher matcher = pattern.matcher((CharSequence)postalCode); 
+		return matcher.matches(); 
+	} 
+	
+	//Id
+	public static boolean isValidId(String id) {
+		
+		String regex =("[0-9][0-9]*"); 
+		Pattern pattern = Pattern.compile(regex); 
+		Matcher matcher = pattern.matcher((CharSequence)id); 
+		return matcher.matches(); 
+	} 
+
+	
+
+
+	//password validation
+	//void printStrongNess(string& input) 
+	//{ 
+	//    int n = input.length(); 
+	//  
+	//    // Checking lower alphabet in string 
+	//    bool hasLower = false, hasUpper = false; 
+	//    bool hasDigit = false, specialChar = false; 
+	//    string normalChars = "abcdefghijklmnopqrstu"
+	//        "vwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "; 
+	//  
+	//    for (int i = 0; i < n; i++) { 
+	//        if (islower(input[i])) 
+	//            hasLower = true; 
+	//        if (isupper(input[i])) 
+	//            hasUpper = true; 
+	//        if (isdigit(input[i])) 
+	//            hasDigit = true; 
+	//  
+	//        size_t special = input.find_first_not_of(normalChars); 
+	//        if (special != string::npos) 
+	//            specialChar = true; 
+	//    } 
+	//  
+	//    // Strength of password 
+	//    cout << "Strength of password:-"; 
+	//    if (hasLower && hasUpper && hasDigit &&  
+	//        specialChar && (n >= 8)) 
+	//        cout << "Strong" << endl; 
+	//    else if ((hasLower || hasUpper) &&  
+	//             specialChar && (n >= 6)) 
+	//        cout << "Moderate" << endl; 
+	//    else
+	//        cout << "Weak" << endl; 
+} 
+

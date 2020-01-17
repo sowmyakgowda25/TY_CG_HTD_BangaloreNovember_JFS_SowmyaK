@@ -1,0 +1,26 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import java.util.List;
+
+import com.capgemini.fms.dto.CustomerBean;
+
+public class CustomerDAOImpl implements CustomerDAO{
+
+	public boolean addCustomer(CustomerBean bean) {
+		return false;
+	}
+
+	public boolean modifyCustomer(int custId) {
+		return false;
+	}
+
+	public boolean deleteCustomer(int custId) {
+		return false;
+	}
+
+	public List<CustomerBean> getAllCustomers(CustomerBean bean) {
+		return null;
+	}
+
+
+}

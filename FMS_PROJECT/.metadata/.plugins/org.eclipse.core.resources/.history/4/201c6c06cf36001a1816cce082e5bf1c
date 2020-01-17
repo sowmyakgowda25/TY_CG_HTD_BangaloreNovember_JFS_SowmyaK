@@ -1,0 +1,348 @@
+package com.capgemini.fms_collection.controller;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.capgemini.fms_collection.bean.ClientBean;
+import com.capgemini.fms_collection.bean.ContractorBean;
+import com.capgemini.fms_collection.bean.LoginBean;
+import com.capgemini.fms_collection.bean.ProductBean;
+import com.capgemini.fms_collection.exception.FmsException;
+import com.capgemini.fms_collection.factory.AdminFactory;
+import com.capgemini.fms_collection.factory.ClientFactory;
+import com.capgemini.fms_collection.factory.ContractorFactory;
+import com.capgemini.fms_collection.factory.ProductFactory;
+import com.capgemini.fms_collection.service.AdminService;
+import com.capgemini.fms_collection.service.ClientServices;
+import com.capgemini.fms_collection.service.ContractorServices;
+import com.capgemini.fms_collection.service.ProductServices;
+import com.capgemini.fms_collection.validations.Validations;
+
+public class Admin {
+	public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		LoginBean bean = new LoginBean();
+		ContractorBean user = new ContractorBean();
+		ProductBean pUser = new ProductBean();
+		ClientBean client = new ClientBean();
+		AdminService services = AdminFactory.instanceOfAdminServices();
+		ContractorServices services1 = ContractorFactory.instanceOfContractorServices();
+		ClientServices services3 = ClientFactory.instanceOfClientServices();
+		ProductServices services2 = ProductFactory.instanceOfProductServices();
+
+		System.out.println("Press 1 to Admin Login");
+		System.out.println("Press 2 Back to Home");
+
+		String choice = null;
+		String in = "switch";
+		while (in == "switch") {
+			choice = sc.next();
+			if (Validations.isValidId(choice)) {
+				in = "st";
+			} else {
+				System.out.println("Please Enter digits only");
+			}
+		}
+
+		switch (Integer.parseInt(choice)) {
+		case 1:
+			System.out.println("Enter AdminName");
+			String aName = sc.next();
+			System.out.println("Enter Password");
+			String pwd = sc.next();
+
+			bean.setAdminName(aName);
+			bean.setPassword(pwd);
+
+			try {
+				if (services.loginAdmin(aName, pwd)) {
+					System.out.println("Admin logged in Successfully...");
+
+					while (true) {
+						System.out.println("press 1 to insert Client");
+						System.out.println("press 2 for remove Client");
+						System.out.println("Press 3 for Show All clients ");
+						System.out.println("Press 4 for add the Contractor");
+						System.out.println("Press 5 for View the Contracts");
+						System.out.println("Press 6 for Add Product");
+						System.out.println("Press 7 for View the Products");
+						System.out.println("press 8 for Land details");
+						System.out.println("press 9 for Home");
+
+						String choice1 = null;
+						String in1 = "switch";
+						while (in1 == "switch") {
+							choice1 = sc.next();
+							if (Validations.isValidId(choice1)) {
+								in1 = "st";
+							} else {
+								System.out.println("Please Enter digits only");
+							}
+						}
+
+						switch (Integer.parseInt(choice1)) {
+						
+						case 1:
+							String clId = "ab";
+							while (clId == "ab") {
+								System.out.println("Enter Client id");
+								String custId = sc.next();
+								if (Validations.isValidId(custId)) {
+									client.setId(Integer.parseInt(custId));
+									clId = "st";
+								} else {
+									System.out.println("Please Enter Correct Id");
+								}
+							}
+							
+							String client1 = "qunty";
+							while (client1 == "qunty") {
+								System.out.println("Enter Client Name:");
+								String clientName = sc.next();
+								if (Validations.isValidName(clientName)) {
+									client.setName(clientName);
+									client1 = "quanty";
+								} else {
+									System.out.println("Enter correct name");
+								}
+							}
+							String clientPwd = "qunty";
+							while (clientPwd == "qunty") {
+								System.out.println("Enter Client password:");
+								String clientPassword = sc.next();
+								if (Validations.isValidName(clientPassword)) {
+									client.setPassword(clientPassword);
+									clientPwd = "quanty";
+								} else {
+									System.out.println("Enter valid password");
+								}
+							}
+
+							 String type1 = "door";
+							 while (type1 == "door") {
+							 System.out.println("Enter the Type ");
+							 String clientType = sc.next();
+							 if (Validations.isValidName(clientType)) {
+								 client.setType(clientType);
+							 type1 = "doors";
+							 } else {
+							 System.out.println("Please enter valid type");
+							 }
+							 }
+
+							boolean check = false;
+							try {
+								check = services3.addClient(client);
+							} catch (FmsException e) {
+								System.out.println(e.toString());
+							}
+							if (check) {
+								System.out.println("Client added successfully...");
+								Client.main(args);
+							}
+
+							break;
+						case 2:
+							int i1 = 0;
+							boolean c1 = true;
+							while (c1 == true) {
+								System.out.println("Enter Client Id to delete the Client:");
+								String clientNum = sc.next();
+								if (Validations.isValidId(clientNum)) {
+									i1 = Integer.parseInt(clientNum);
+									c1 = false;
+									client.setId(i1);
+								} else {
+									System.out.println("Please Enter digits only");
+								}
+							}
+
+							boolean check1 = false;
+							try {
+							 check1 = services3.deleteClient(i1);
+							}catch(FmsException e) {
+								e.toString();
+							}
+							if(check1) {
+								System.out.println("Client deleted successfully...");
+							}else {
+								System.out.println("Client is not deleted ");
+							}
+							break;
+
+						case 3:
+							List<ClientBean> list = services3.getAllClient(client);
+							if(!list.isEmpty()){
+									System.out.println(list);
+							}else {
+								System.err.println("Client details not found");
+							}
+							break;
+						case 4:
+							String cNo = "ab";
+							while (cNo == "ab") {
+								System.out.println("Enter contractor number");
+								String conNum = sc.next();
+								if (Validations.isValidId(conNum)) {
+									user.setContractNo(Integer.parseInt(conNum));
+									cNo = "stu";
+								} else {
+									System.out.println("Please Enter Correct number");
+								}
+							}
+							// System.out.println("Enter customerId..");
+							// user.setCustomerId(Integer.parseInt(sc.next()));
+							String cusId = "ab";
+							while (cusId == "ab") {
+								System.out.println("Enter customer id");
+								String custId = sc.next();
+								if (Validations.isValidId(custId)) {
+									user.setCustomerId(Integer.parseInt(custId));
+									cusId = "st";
+								} else {
+									System.out.println("Please Enter Correct Id");
+								}
+							}
+							// System.out.println("Enter productId..");
+							// user.setProductId(Integer.parseInt(sc.next()));
+							String pdId = "ab";
+							while (pdId == "ab") {
+								System.out.println("Enter product id");
+								String pId = sc.next();
+								if (Validations.isValidId(pId)) {
+									user.setProductId(Integer.parseInt(pId));
+									pdId = "st";
+								} else {
+									System.out.println("Please Enter Correct Id");
+								}
+							}
+							// System.out.println("Enter haulierId..");
+							// user.setHaulierId(Integer.parseInt(sc.next()));
+							String haId = "ab";
+							while (haId == "ab") {
+								System.out.println("Enter haulier id");
+								String hId = sc.next();
+								if (Validations.isValidId(hId)) {
+									user.setHaulierId(Integer.parseInt(hId));
+									haId = "st";
+								} else {
+									System.out.println("Please Enter Correct Id");
+								}
+							}
+							System.out.println("Enter deliveryDate...");
+							user.setDeliveryDate(sc.next());
+
+							System.out.println("Enter deliveyDay...");
+							user.setDeliveryDay(sc.next());
+
+							// System.out.println("Enter Quantity..");
+							// user.setQuantity(Integer.parseInt(sc.next()));
+							String qn = "qunty";
+							while (qn == "qunty") {
+								System.out.println("Enter product quantity:");
+								String qnty = sc.next();
+								if (Validations.isValidId(qnty)) {
+									user.setQuantity(Integer.parseInt(qnty));
+									qn = "quanty";
+								} else {
+									System.out.println("Enter Quantity in integer format");
+								}
+							}
+
+							boolean check11 = false;
+							try {
+								check11 = services1.addContractor(user);
+							} catch (FmsException e) {
+								System.out.println(e.toString());
+							}
+							if (check11) {
+								System.out.println("Contractor added successfully...");
+							}
+							// else {
+							// System.out.println("Contractor number is not valid");
+							// }
+							break;
+
+						case 5:
+							List<ContractorBean> lists = services1.getAllContractor(user);
+							if (lists != null) {
+								for (ContractorBean beans : lists) {
+									System.out.println(beans);
+								}
+							} else {
+								System.out.println("contractor not found");
+							}
+							break;
+						case 6:
+							String prId = "bc";
+							while (prId == "bc") {
+								System.out.println("Enter Product Id");
+								String id = sc.next();
+								if (Validations.isValidId(id)) {
+									pUser.setProductId(Integer.parseInt(id));
+									prId = "ac";
+								} else {
+									System.out.println("Please Enter Correct Id");
+								}
+							}
+
+							String prName = "door";
+							while (prName == "door") {
+								System.out.println("Enter Product Name");
+								String name = sc.next();
+								if (Validations.isValidName(name)) {
+									pUser.setProductName(name);
+									prName = "doors";
+								} else {
+									System.out.println("Please Enter Correct Name");
+								}
+							}
+
+							boolean check2 = false;
+							try {
+								check2 = services2.addProduct(pUser);
+							} catch (FmsException e) {
+								System.out.println(e.toString());
+							}
+							if (check2) {
+								System.out.println("Product added successfully...");
+							} else {
+								System.out.println("Product id is not valid");
+							}
+							break;
+						case 7:
+							List<ProductBean> list1 = services2.getAllProduct(pUser);
+							if (list1 != null) {
+								for (ProductBean bean1 : list1) {
+									System.out.println(bean1);
+								}
+							} else {
+								System.out.println("Product not found");
+							}
+							break;
+						case 8:
+							Land.main(args);
+							break;
+						case 9:
+							HomePage.main(args);
+							break;
+						default:
+							break;
+						}
+					}
+
+				}else {
+					System.err.println("Admin not loggedin...please enter valid credentials");
+				}
+			} catch (FmsException e) {
+				System.out.println(e.toString());
+			}
+			break;
+		case 2:
+			HomePage.main(args);
+			break;
+		}
+
+	}
+}

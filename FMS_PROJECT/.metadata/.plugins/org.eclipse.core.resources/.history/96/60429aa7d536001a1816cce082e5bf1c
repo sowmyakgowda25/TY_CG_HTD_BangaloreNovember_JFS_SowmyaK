@@ -1,0 +1,69 @@
+package com.capgemini.fms_collection.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms_collection.bean.ClientBean;
+import com.capgemini.fms_collection.exception.FmsException;
+
+public class ClientDAOImpl implements ClientDao{
+	private static List<ClientBean> clientBean = new ArrayList<ClientBean>();
+
+	@Override
+	public boolean clientLogin(String name, String password) throws FmsException {
+		
+		try {
+			for(ClientBean bean : clientBean) {
+				if (bean.getName().equals(name)) {
+					if(bean.getPassword().equals(password)) {
+//					System.out.println("login successful...");
+					return true;
+			}
+		}
+	}
+	} catch (Exception e) {
+		throw new FmsException("Enter valid details");
+	}
+	return false;
+	}
+
+	@Override
+	public boolean addClient(ClientBean bean) throws FmsException {
+		try {
+			for(ClientBean cb:clientBean) {
+				if(cb.getId()==bean.getId()) {
+					return false;
+				}
+			}
+			clientBean.add(bean);
+			}catch(Exception e) {
+				throw new FmsException("Id not exist");
+			}
+			return true;
+	}
+
+	@Override
+	public boolean deleteClient(int id) throws FmsException {
+		try {
+			ClientBean bean = null;
+				for(ClientBean cb:clientBean) {
+					if(cb.getId()==id) {
+						bean=cb;
+					}
+				}
+				if(bean!=null) {
+					clientBean.remove(bean);
+					return true;
+				}
+			}catch(Exception e) {
+				throw new FmsException("Id already exist");
+			}
+			return false;
+	}
+
+	@Override
+	public List<ClientBean> getAllClient(ClientBean bean) {
+		return clientBean;
+	}
+
+}

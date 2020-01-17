@@ -1,0 +1,20 @@
+package com.capgemini.fms_jdbc.factory;
+
+import com.capgemini.fms_jdbc.dao.CustomerDAO;
+import com.capgemini.fms_jdbc.dao.CustomerDAOImpl;
+import com.capgemini.fms_jdbc.services.CustomerServices;
+import com.capgemini.fms_jdbc.services.CustomerServicesImpl;
+
+public class CustomerFactory {
+	public static CustomerServices instanceOfCustomerServices() {
+		CustomerServices services = new CustomerServicesImpl();
+		return services;
+	}
+	public static CustomerDAO instanceOfCustomerDAOImpl() {
+		CustomerDAO dao = new CustomerDAOImpl();
+		return dao;
+	}
+	public static CustomerDAO getCustomerDAO() {
+		return null;
+	}
+}

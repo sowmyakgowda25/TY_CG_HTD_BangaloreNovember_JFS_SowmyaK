@@ -1,0 +1,20 @@
+package com.capgemini.fms_collection.factory;
+
+import com.capgemini.fms_collection.dao.ContractorDAO;
+import com.capgemini.fms_collection.dao.ContractorDAOImpl;
+import com.capgemini.fms_collection.service.ContractorServices;
+import com.capgemini.fms_collection.service.ContractorServicesImpl;
+
+public class ContractorFactory {
+	public static ContractorServices instanceOfContractorServices() {
+		ContractorServices services = new ContractorServicesImpl();
+		return services;
+	}
+	public static ContractorDAO instanceOfContractorDAOImpl() {
+		ContractorDAO dao = new ContractorDAOImpl();
+		return dao;
+	}
+	public static ContractorDAO getContractorDAO() {
+		return null;
+	}
+}

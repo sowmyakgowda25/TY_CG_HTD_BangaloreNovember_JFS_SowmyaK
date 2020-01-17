@@ -1,0 +1,30 @@
+package com.capgemini.fms.service;
+
+import java.util.List;
+
+import com.capgemini.fms_jpahibernate.dto.ProductBean;
+
+public class ProductServicesImpl implements ProductServices {
+
+	public boolean addProduct(ProductBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean modifyProduct(ProductBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean deleteProduct(int productId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public List<ProductBean> getAllProduct(ProductBean bean) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+}

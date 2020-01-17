@@ -1,0 +1,37 @@
+package com.capgemini.fms_springrest.services;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.capgemini.fms_springrest.dao.ProductDao;
+import com.capgemini.fms_springrest.dto.ProductBean;
+
+@Service
+public class ProductServicesImpl implements ProductServices {
+	
+	@Autowired
+	private ProductDao dao;
+	@SuppressWarnings("unused")
+	private ProductBean bean;
+
+	public boolean addProduct(ProductBean bean) {
+		String pId = Integer.toString(bean.getProductId());
+		if(Validation)
+		return dao.addProduct(bean);
+	}
+
+	public boolean modifyProduct(int productId , String productName)  {
+		return dao.modifyProduct(productId , productName);
+	}
+
+	public boolean deleteProduct(int productId) {
+		return dao.deleteProduct(productId);
+	}
+
+	@Override
+	public List<ProductBean> getAllProduct() {
+		return dao.getAllProduct();
+	}
+
+}

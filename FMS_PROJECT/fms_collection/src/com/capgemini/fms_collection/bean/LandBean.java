@@ -1,0 +1,33 @@
+package com.capgemini.fms_collection.bean;
+
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class LandBean implements Serializable{
+	private int landId;
+	private double landAcre;
+	private String landLocation;
+	
+	public int getLandId() {
+		return landId;
+	}
+	public void setLandId(int landId) {
+		this.landId = landId;
+	}
+	public double getLandAcre() {
+		return landAcre;
+	}
+	public void setLandAcre(double landAcre) {
+		this.landAcre = landAcre;
+	}
+	public String getLandLocation() {
+		return landLocation;
+	}
+	public void setLandLocation(String landLocation) {
+		this.landLocation = landLocation;
+	}
+	@Override
+	public String toString() {
+		return "LandBean [landId=" + landId + ", landAcre=" + landAcre + ", landLocation=" + landLocation + "]";
+	}
+}

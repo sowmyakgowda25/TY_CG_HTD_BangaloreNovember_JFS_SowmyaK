@@ -1,0 +1,141 @@
+package com.capgemini.fms_jpahibernate.controller;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.capgemini.fms_jpahibernate.dao.ContractorDAO;
+import com.capgemini.fms_jpahibernate.dto.ContractorBean;
+import com.capgemini.fms_jpahibernate.factory.ContractorFactory;
+import com.capgemini.fms_jpahibernate.service.ContractorServices;
+import com.capgemini.fms_jpahibernate.validations.Validations;
+
+public class Contractor{
+	@SuppressWarnings({ "resource", "unused" })
+	public static void contractor(String[] args) {
+		
+		Scanner sc= new Scanner(System.in);
+		ContractorBean bean = new ContractorBean();
+		ContractorDAO dao = ContractorFactory.getContractorDAO();
+		ContractorServices services = ContractorFactory.instanceOfContractorServices();
+		while(true) {
+			System.out.println("Press 1 to insert contractor data");
+			System.out.println("Press 2 to delete contractor data");
+			System.out.println("Press 3 to get all the contractor");
+			System.out.println("Press 4 to back to HomePage");
+			
+			int choice = sc.nextInt();
+			switch(choice) {
+			case 1:	
+				String cNo="ab";
+				while(cNo=="ab") {
+					System.out.println("Enter contractor number");
+					String conNum=sc.next();
+					if(Validations.isValidId(conNum)) {
+						bean.setContractorNum(Integer.parseInt(conNum));
+						cNo="stu";
+					}else {
+						System.out.println("Please Enter Correct number");
+					}
+				}
+
+				String cusId="ab";
+				while(cusId=="ab") {
+					System.out.println("Enter customer id");
+					String custId=sc.next();
+					if(Validations.isValidId(custId)) {
+						bean.setCustomerId(Integer.parseInt(custId));
+						cusId="st";
+					}else {
+						System.out.println("Please Enter Correct Id");
+					}
+				}
+				
+				String pdId="ab";
+				while(pdId=="ab") {
+					System.out.println("Enter product id");
+					String pId=sc.next();
+					if(Validations.isValidId(pId)) {
+						bean.setCustomerId(Integer.parseInt(pId));
+						pdId="st";
+					}else {
+						System.out.println("Please Enter Correct Id");
+					}
+				}
+				
+				String haId="ab";
+				while(haId=="ab") {
+					System.out.println("Enter haulier id");
+					String hId=sc.next();
+					if(Validations.isValidId(hId)) {
+						bean.setCustomerId(Integer.parseInt(hId));
+						haId="st";
+					}else {
+						System.out.println("Please Enter Correct Id");
+					}
+				}
+				
+				String d="date";
+				while(d=="date") {
+					System.out.println("Enter product delivery date");
+					String date=sc.next();
+					if(Validations.isValidDate(date)) {
+						bean.setDeliveryDate(date);
+						 d="gate";
+					}else {
+						System.out.println("Enter the Date in Correct Format");
+					}
+				}
+				
+				System.out.println("Enter product delivery day");
+				String day=sc.next();
+				
+				bean.setDeliveryDay(day);
+				String qn="qunty";
+				while(qn=="qunty") {
+					System.out.println("Enter product quantity:");
+					String qnty=sc.next();
+					if(Validations.isValidId(qnty)) {
+						bean.setQuantity(Integer.parseInt(qnty));
+						qn="quanty";
+					}else {
+						System.out.println("Enter Quantity in integer format");
+					}
+				}
+				
+				if(services.addContractor(bean)) {
+					System.out.println("Contractor inserted...");
+				}else
+				{
+					System.err.println("something went wrong...");
+				}
+				break;
+			case 2:
+				
+					System.out.println("Enter contractor number to delete the customer:");
+					int contractorNo=sc.nextInt();
+
+					boolean b1 = services.deleteContractor(contractorNo);
+					if(b1) {
+						System.out.println("Contractor deleted successfully...");
+					}else{
+						System.out.println("Something went wrong...");
+					}
+					break;
+			case 3:
+				List<ContractorBean> list = services.getAllContractor(bean);
+				if(list != null){
+					for(ContractorBean user:list) {
+						System.out.println(user);
+					}
+				}else {
+					System.out.println("contractor not found");
+				}
+				break;
+			case 4:HomePage.main(args);
+				break;
+			default: 
+				break;
+			}
+		}
+	}
+}

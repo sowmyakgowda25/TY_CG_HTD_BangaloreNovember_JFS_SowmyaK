@@ -1,0 +1,8 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import com.capgemini.fms_jpahibernate.dto.AdminBean;
+
+public interface AdminDAO {
+	boolean loginAdmin(AdminBean bean);
+	boolean signupAdmin(AdminBean bean);
+}

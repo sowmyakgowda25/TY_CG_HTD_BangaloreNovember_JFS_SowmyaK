@@ -1,0 +1,21 @@
+package com.capgemini.fms.factory;
+
+import com.capgemini.fms.service.CustomerServices;
+import com.capgemini.fms.service.CustomerServicesImpl;
+import com.capgemini.fms_jpahibernate.dao.CustomerDAO;
+import com.capgemini.fms_jpahibernate.dao.CustomerDAOImpl;
+
+public class CustomerFactory {
+	
+	public static CustomerServices instanceOfCustomerServices() {
+		CustomerServices services = new CustomerServicesImpl();
+		return services;
+	}
+	public static CustomerDAO instanceOfCustomerDAOImpl() {
+		CustomerDAO dao = new CustomerDAOImpl();
+		return dao;
+	}
+	public static CustomerDAO getCustomerDAO() {
+		return null;
+	}
+}

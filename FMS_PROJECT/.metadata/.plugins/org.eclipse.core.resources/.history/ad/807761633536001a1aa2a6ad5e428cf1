@@ -1,0 +1,31 @@
+package com.capgemini.fms_jpahibernate.controller;
+
+import java.util.Scanner;
+
+public class HomePage {
+	public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.println("1.Contractor\n2.Customer\n3.Product\n4.Haulier\n5.Land\n6.Home");
+
+			int check=sc.nextInt();
+			switch(check) {
+			case 1:Contractor.contractor(args);
+			break;
+			case 2:Customer.main(args);
+			break;
+			case 3:Product.main(args);
+			break;
+			case 4:Haulier.main(args);
+			break;
+			case 5:Land.main(args);
+			break;
+			case 6:HomePage.main(args);
+			break;
+			default:
+				break;
+			}
+		}		
+	}
+}

@@ -1,0 +1,20 @@
+package com.capgemini.fms_collection.factory;
+
+import com.capgemini.fms_collection.dao.AdminDAO;
+import com.capgemini.fms_collection.dao.AdminDAOImpl;
+import com.capgemini.fms_collection.service.AdminService;
+import com.capgemini.fms_collection.service.AdminServicesImpl;
+
+public class AdminFactory {
+	public static AdminDAO getAdminDAO() {
+		return new AdminDAOImpl();
+	}
+	public static AdminService instanceOfAdminServices() {
+		AdminService services = new AdminServicesImpl();
+		return services;
+	}
+	public static AdminDAO instanceOfAdminDAOImpl() {
+		AdminDAO dao = new AdminDAOImpl();
+		return dao;
+	}
+}

@@ -1,0 +1,206 @@
+package com.capgemini.fms_jpahibernate.controller;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.capgemini.fms_jpahibernate.dto.LandBean;
+import com.capgemini.fms_jpahibernate.exception.FmsException;
+import com.capgemini.fms_jpahibernate.factory.LandFactory;
+import com.capgemini.fms_jpahibernate.service.LandServices;
+import com.capgemini.fms_jpahibernate.validations.Validations;
+
+public class Land {
+	public static void land(String[] args) {
+
+		LandBean bean = new LandBean();
+		LandServices services = LandFactory.instanceOfLandServices();
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+			System.out.println("Press 1 to Add Land data");
+			System.out.println("Press 2 to Modify Land Location");
+			System.out.println("Press 3 to Modify Land Acre");
+			System.out.println("Press 4 to delete Land data");
+			System.out.println("Press 5 to get all Land details");
+			System.out.println("Press 6 to back to HomePage");
+
+			String choice = null;
+			String i = "switch";
+			while(i=="switch") {
+				choice = sc.next();
+				if (Validations.isValidId(choice)) {
+					i = "st";
+				} else {
+					System.out.println("Please Enter digits only");
+				}
+			}
+			
+			switch (Integer.parseInt(choice)) {
+			case 1:
+				String lId = "ab";
+				while (lId == "ab") {
+					System.out.println("Enter Land id");
+					String id = sc.next();
+					if (Validations.isValidId(id)) {
+						bean.setLandId(Integer.parseInt(id));
+						lId = "st";
+					} else {
+						System.out.println("Please Enter Correct Id");
+					}
+				}
+
+				System.out.println("Enter the Land Acre");
+				double acre = sc.nextDouble();
+				bean.setLandAcre(acre);
+
+				String loc = "tt";
+				while (loc == "tt") {
+					System.out.println("Enter Land Location:");
+					String location = sc.next();
+					if (Validations.isValidName(location)) {
+						bean.setLandLocation(location);
+						loc = "sss";
+					} else {
+						System.out.println("Please Enter Correct Location");
+					}
+				}
+
+				boolean check = false;
+				try {
+					check = services.addLand(bean);
+				} catch (FmsException e) {
+					System.out.println(e.toString());
+				}
+				if (check) {
+					System.out.println("Land added successfully...");
+				} 
+//				else {
+//					System.out.println("Land id is not valid");
+//				}
+				break;
+			case 2:
+				int i1 = 0;
+				boolean l1 = true;
+				while (l1 == true) {
+					System.out.println("Enter Land id");
+					String landId = sc.next();
+					if (Validations.isValidId(landId)) {
+						i1 = Integer.parseInt(landId);
+						l1 = false;
+						bean.setLandId(i1);
+					} else {
+						System.out.println("Please Enter Correct Id");
+					}
+				}
+				String landLocation = null;
+				boolean lName = true;
+				while (lName == true) {
+					System.out.println("Enter Land location:");
+					landLocation = sc.next();
+					if (Validations.isValidName(landLocation)) {
+						bean.setLandLocation(landLocation);
+						lName = false;
+						bean.setLandLocation(landLocation);
+					} else {
+						System.out.println("Please Enter Correct Name");
+					}
+				}
+
+				boolean cname = false;
+				try {
+					cname = services.modifyLandLoc(i1, landLocation);
+				} catch (FmsException e) {
+					System.out.println(e.toString());
+				}
+				if (cname) {
+					System.out.println("Land Name modified successfully...");
+				} 
+//				else {
+//					System.out.println("Land Name not modified");
+//				}
+				break;
+
+			case 3:
+				int i6 = 0;
+				boolean c6 = true;
+				while (c6 == true) {
+					System.out.println("Enter Land id");
+					String id = sc.next();
+					if (Validations.isValidId(id)) {
+						i6 = Integer.parseInt(id);
+						c6 = false;
+						bean.setLandId(i6);
+					} else {
+						System.out.println("Please Enter Correct Id");
+					}
+				}
+
+				System.out.println("Enter the Land Acres :");
+				double lAcre = sc.nextDouble();
+				bean.setLandAcre(lAcre);
+
+				boolean post = false;
+				try {
+					post = services.modifyLandAcre(i6, lAcre);
+				} catch (FmsException e) {
+					System.out.println(e.toString());
+				}
+				if (post) {
+					System.out.println("Land Acres modified successfully...");
+				} 
+//				else {
+//					System.out.println("Land Acres not modified");
+//				}
+				break;
+
+			case 4:
+				int i11 = 0;
+				boolean c1 = true;
+				while (c1 == true) {
+					System.out.println("Enter id to delete the Land details");
+					String landId = sc.next();
+					if (Validations.isValidId(landId)) {
+						i11 = Integer.parseInt(landId);
+						c1 = false;
+						bean.setLandId(i11);
+					} else {
+						System.out.println("Please Enter digits only");
+					}
+				}
+
+				boolean check1 = false;
+				try {
+					check1 = services.deleteLand(i11);
+				} catch (FmsException e) {
+					System.out.println(e.toString());
+				}
+				if (check1) {
+					System.out.println("Land deleted successfully...");
+				} 
+//				else {
+//					System.out.println("Land is not deleted ");
+//				}
+
+				break;
+
+			case 5:
+				List<LandBean> list = services.getAllLand(bean);
+				if (!list.isEmpty()) {
+						System.out.println(list);
+				} else {
+					System.out.println("Land not found");
+				}
+				break;
+
+			case 6:
+				Admin.admin(args);
+				break;
+			default:
+				System.out.println("Please Enter the valid field..");
+				break;
+			}
+		}
+
+	}
+}

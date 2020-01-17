@@ -1,0 +1,89 @@
+package com.capgemini.fms_collection.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms_collection.bean.LandBean;
+import com.capgemini.fms_collection.exception.FmsException;
+
+public class LandDAOImpl implements LandDAO {
+	private List<LandBean> landBean = new ArrayList<LandBean>();
+
+	@Override
+	public boolean addLand(LandBean bean) throws FmsException {
+		try {
+			for (LandBean cb : landBean) {
+				if (cb.getLandId() == bean.getLandId()) {
+					return false;
+				}
+			}
+			landBean.add(bean);
+			return true;
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+	}
+
+//	@Override
+//	public boolean modifyLand(int landId) {
+//		for(LandBean cb:landBean) {
+//			if(cb.getLandId()==landId) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+
+	@Override
+	public boolean deleteLand(int landId) throws FmsException {
+		try {
+			LandBean bean = null;
+			for (LandBean cb : landBean) {
+				if (cb.getLandId() == landId) {
+					bean = cb;
+				}
+			}
+			if (bean != null) {
+				landBean.remove(bean);
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id does not exist");
+		}
+		return false;
+	}
+
+	@Override
+	public List<LandBean> getAllLand(LandBean bean) {
+		return landBean;
+	}
+
+	@Override
+	public boolean modifyLandLoc(int landId, String landLocation) throws FmsException {
+		try {
+			for (LandBean cb : landBean) {
+				if (cb.getLandId() == landId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyLandAcre(int landId, double landAcre) throws FmsException {
+		try {
+			for (LandBean cb : landBean) {
+				if (cb.getLandId() == landId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return false;
+	}
+
+}

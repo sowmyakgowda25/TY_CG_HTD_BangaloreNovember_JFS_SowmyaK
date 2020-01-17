@@ -1,0 +1,87 @@
+package com.capgemini.fms_springrest.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.capgemini.fms_springrest.dto.ProductBean;
+import com.capgemini.fms_springrest.dto.ProductResponse;
+import com.capgemini.fms_springrest.services.ProductServices;
+
+
+@RestController
+public class Product {
+
+	@Autowired
+	private ProductServices service;
+	
+	@PostMapping(path = "/add-product",produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ProductResponse addProduct(@RequestBody ProductBean bean)  {
+		ProductResponse response = new ProductResponse();
+		
+		if(service.addProduct(bean)) {
+			response.setStatusCode(201);
+			response.setMessage("Success");
+			response.setDiscription("Product added successfully");
+		}
+		else {
+			response.setStatusCode(401);
+			response.setMessage("Failure");
+			response.setDiscription("Product already exists");
+		}
+		return response;
+	}
+	
+	@PutMapping(path = "/modify-productname", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ProductResponse modifyProductName(@RequestBody ProductBean product) {
+		ProductResponse response = new ProductResponse();
+		if (service.modifyProduct(product.getProductId(), product.getProductName())) {
+			response.setStatusCode(201);
+			response.setMessage("Success");
+			response.setDiscription("Product location updated");
+		} else {
+			response.setStatusCode(401);
+			response.setMessage("Failure");
+			response.setDiscription("Product location not found");
+		}
+		return response;
+	}	
+	
+	@DeleteMapping(path = "/deleteProduct/{productId}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ProductResponse deleteProduct(@PathVariable("productId")int productId){
+		ProductResponse response=new ProductResponse();
+		if(service.deleteProduct(productId)) {
+		response.setStatusCode(201);
+		response.setMessage("Success");
+		response.setDiscription("Product Details Deleted");
+		}
+		return response;
+	}
+	
+	@GetMapping(path = "/view-allproduct", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ProductResponse getAllProduct() {
+		ProductResponse response = new ProductResponse();
+		List<ProductBean> list = service.getAllProduct();
+		if (list.size() != 0) {
+			response.setStatusCode(201);
+			response.setMessage("Success");
+			response.setDiscription("Product found");
+			response.setBean(list);
+		}
+		else {
+			response.setStatusCode(401);
+			response.setMessage("Exception");
+			response.setDiscription("No data Found");
+		}
+		return response;
+	}
+}

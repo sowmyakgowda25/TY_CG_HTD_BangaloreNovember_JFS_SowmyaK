@@ -1,0 +1,6 @@
+127.0.0.1 - - [14/Jan/2020:14:05:59 +0530] "GET / HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [14/Jan/2020:14:06:58 +0530] "POST /fms_springrest/adminLogin HTTP/1.1" 404 682
+0:0:0:0:0:0:0:1 - - [14/Jan/2020:14:08:15 +0530] "POST /fms_springrest/view-allcontract HTTP/1.1" 404 682
+127.0.0.1 - - [14/Jan/2020:14:17:03 +0530] "GET / HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [14/Jan/2020:14:17:45 +0530] "GET /fms_springrest/view-allcontract HTTP/1.1" 200 360
+0:0:0:0:0:0:0:1 - - [14/Jan/2020:14:18:57 +0530] "POST /fms_springrest/adminLogin HTTP/1.1" 200 162

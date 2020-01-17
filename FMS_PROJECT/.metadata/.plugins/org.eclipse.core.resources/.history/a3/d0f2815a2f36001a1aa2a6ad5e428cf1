@@ -1,0 +1,8 @@
+package com.capgemini.fms.service;
+
+import com.capgemini.fms_jpahibernate.dto.AdminBean;
+
+public interface AdminService {
+	boolean loginAdmin(AdminBean bean);
+	boolean signupAdmin(AdminBean bean);
+}

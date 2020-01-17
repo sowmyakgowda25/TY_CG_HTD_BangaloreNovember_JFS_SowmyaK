@@ -1,0 +1,105 @@
+package com.capgemini.fms_jdbc.dao;
+
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import com.capgemini.fms_jdbc.bean.ContractorBean;
+import com.capgemini.fms_jdbc.exception.FmsException;
+
+public class ContractorDAOImpl  implements ContractorDao{
+	FileReader reader;
+	Properties prop;
+	ContractorBean user = new ContractorBean();
+	
+	public ContractorDAOImpl() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			reader = new FileReader("db.properties");
+			prop = new Properties();
+			prop.load(reader);
+			Class.forName(prop.getProperty("driverClass"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean addContractor(ContractorBean user) throws FmsException {
+		try(Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"),prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("insertQuery"));
+				){
+			pstmt.setInt(1, user.getContractorNum());
+			pstmt.setInt(2, user.getCustomerId());
+			pstmt.setInt(3, user.getProductId());
+			pstmt.setInt(4, user.getHaulierId());
+			pstmt.setString(5, user.getDeliveryDate());
+			pstmt.setString(6, user.getDeliveryDay());
+			pstmt.setInt(7, user.getQuantity());
+			
+			int count = pstmt.executeUpdate();
+
+			if(count > 0) {
+				return true;
+			}
+		}catch(Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteContractor(int contractNo) {
+		try(Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"),prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = 
+						con.prepareStatement(prop.getProperty("deleteQuery"));
+				){
+			pstmt.setInt(1, contractNo);
+
+			int count = pstmt.executeUpdate();
+
+			if(count > 0) {
+				return true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public List<ContractorBean> getAllContractor() {
+		List<ContractorBean> list = new ArrayList<ContractorBean>();
+		try(Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"),prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				Statement stmt=con.createStatement();
+				ResultSet rs = stmt.executeQuery(prop.getProperty("query"))){
+			while(rs.next()) {
+				user = new ContractorBean();
+				user.setContractorNum(rs.getInt(1));
+				user.setCustomerId(rs.getInt(2));
+				user.setProductId(rs.getInt(3));
+				user.setHaulierId(rs.getInt(4));
+				user.setDeliveryDate(rs.getString(5));
+				user.setDeliveryDay(rs.getString(6));
+				user.setQuantity(rs.getInt(7));
+				list.add(user);
+			}
+			return list;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
+}

@@ -1,0 +1,12 @@
+package com.capgemini.fms_jpahibernate.service;
+
+import java.util.List;
+
+import com.capgemini.fms_jpahibernate.dto.CustomerBean;
+
+public interface CustomerServices {
+	boolean addCustomer(CustomerBean bean);
+	boolean modifyCustomer(int custId);
+	boolean deleteCustomer(int custId);
+	public List<CustomerBean> getAllCustomers();
+}

@@ -1,0 +1,21 @@
+package com.capgemini.fms_collection.factory;
+
+import com.capgemini.fms_collection.dao.LandDAO;
+import com.capgemini.fms_collection.dao.LandDAOImpl;
+import com.capgemini.fms_collection.service.LandServices;
+import com.capgemini.fms_collection.service.LandServicesImpl;
+
+public class LandFactory {
+	
+	public static LandServices instanceOfLandServices() {
+		LandServices services = new LandServicesImpl();
+		return services;
+	}
+	public static LandDAO instanceOfLandDAOImpl() {
+		LandDAO dao = new LandDAOImpl();
+		return dao;
+	}
+	public static LandDAO getLandDAO() {
+		return null;
+	}
+}

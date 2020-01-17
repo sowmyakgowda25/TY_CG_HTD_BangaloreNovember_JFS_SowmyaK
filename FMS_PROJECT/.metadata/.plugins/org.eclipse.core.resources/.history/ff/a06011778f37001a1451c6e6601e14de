@@ -1,0 +1,145 @@
+package com.capgemini.fms_jdbc.dao;
+
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import com.capgemini.fms_jdbc.bean.LoginBean;
+import com.capgemini.fms_jdbc.exception.FmsException;
+
+public class AdminDaoImpl implements AdminDao {
+	LoginBean admin = new LoginBean();
+
+	FileReader reader;
+	Properties prop;
+
+	public AdminDaoImpl() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			reader = new FileReader("db.properties");
+			prop = new Properties();
+			prop.load(reader);
+			Class.forName(prop.getProperty("driverClass"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean loginAdmin(String name, String password, String type)  {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("adminQuery"))) {
+			pstmt.setString(1, name);
+			pstmt.setString(2, password);
+			pstmt.setString(3, type);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				admin = new LoginBean();
+				admin.setAdminName(rs.getString(1));
+				admin.setPassword(rs.getString(2));
+				admin.setType(rs.getString(3));
+				return true;
+			}
+
+		} catch (Exception e) {
+			//throw new FmsException("Incorrect admin details");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean clientLogin(String name, String password, String type)  {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("adminQuery"))) {
+			pstmt.setString(1, name);
+			pstmt.setString(2, password);
+			pstmt.setString(3, type);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				admin = new LoginBean();
+				admin.setAdminName(rs.getString(1));
+				admin.setPassword(rs.getString(2));
+				admin.setType(rs.getString(3));
+			}
+			return true;
+		} catch (Exception e) {
+			//throw new FmsException("Incorrect client details");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean addClient(LoginBean bean) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("insertClient"));) {
+			pstmt.setInt(1, bean.getId());
+			pstmt.setString(2, bean.getAdminName());
+			pstmt.setString(3, bean.getPassword());
+			pstmt.setString(4, bean.getType());
+
+			int count = pstmt.executeUpdate();
+
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return false;
+
+	}
+
+	@Override
+	public boolean deleteClient(int id) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("deleteClient"));) {
+			pstmt.setInt(1, id);
+
+			int count = pstmt.executeUpdate();
+
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public List<LoginBean> getAllClient() {
+		List<LoginBean> list = new ArrayList<LoginBean>();
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(prop.getProperty("clientQuery1"))) {
+			while (rs.next()) {
+				
+				admin = new LoginBean();
+				admin.setId(rs.getInt(1));
+				admin.setAdminName(rs.getString(2));
+				admin.setPassword(rs.getString(3));
+				admin.setType(rs.getString(4));
+				
+				list.add(admin);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

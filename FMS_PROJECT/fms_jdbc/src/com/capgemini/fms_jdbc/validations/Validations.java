@@ -1,0 +1,143 @@
+package com.capgemini.fms_jdbc.validations;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+public class Validations {
+
+	public static boolean isValidEmail(String email) 
+	{ 
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+				"[a-zA-Z0-9_+&*-]+)*@" + 
+				"(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+				"A-Z]{2,7}$"; 
+
+		Pattern pat = Pattern.compile(emailRegex); 
+		if (email == null) 
+			return false; 
+		return pat.matcher(email).matches(); 
+	}
+
+	//User name
+	public static boolean isValidName(String name) 
+	{ 
+		String emailRegex = "^[a-zA-Z]*$";
+		Pattern pat = Pattern.compile(emailRegex); 
+		if (name == null) 
+			return false; 
+		return pat.matcher(name).matches(); 
+	}
+	
+//	private static Pattern namePattern = Pattern.compile("^[a-zA-Z]*$");
+//	public static boolean validateName(String name) 
+//	{ 
+//		Matcher matcher = namePattern.matcher(name); 
+//		if(matcher.matches()) {
+//			return true;
+//		}
+//		return false;
+//	} 
+
+	//String Value
+	private static Pattern stringPattern = Pattern.compile("^[a-zA-Z0-9]*$");
+	public static boolean validateString(String word) 
+	{ 
+		Matcher matcher = stringPattern.matcher(word); 
+		if(matcher.matches()) {
+			return true;
+		}
+		return false;
+	} 
+
+	//Date validation
+	public static boolean isValidDate(String date) 
+	{ 
+		String dateValid = "^[0-2]?[0-9]/[0-1]?[0-2]/(?:[0-9]{2})?[0-9]{4}$"; 
+		Pattern pattern = Pattern.compile(dateValid); 
+		Matcher matcher = pattern.matcher((CharSequence)date); 
+//		if(matcher.matches()) {
+//			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+//			LocalDateTime local = LocalDateTime.now();
+//			String dates =dateFormat.format(local);
+//			if(date.compareTo(dates)<0||date.compareTo(dates)==0) {
+//				throw new DateMismatchException("Enter future date");
+//			}else {
+//				return true;
+//			}
+//		}else {
+//			throw new DateMismatchException("Enter Valid Date");
+//		}
+		
+		return matcher.matches(); 
+		
+	} 
+
+	//phone number
+	public static boolean isValidPhoneNo(String phone) {
+		String regex =("(0/91)?[7-9][0-9]{9}"); 
+		Pattern pattern = Pattern.compile(regex); 
+		Matcher matcher = pattern.matcher(phone); 
+		return matcher.matches(); 
+	} 
+	
+	//postal code
+	public static boolean isValidPostal(String postalCode) {
+		String regex =("[1-9][0-9]{5}"); 
+		Pattern pattern = Pattern.compile(regex); 
+		Matcher matcher = pattern.matcher((CharSequence)postalCode); 
+		return matcher.matches(); 
+	} 
+	
+	//Id
+	public static boolean isValidId(String id) {
+		
+		String regex =("[0-9][0-9]*"); 
+		Pattern pattern = Pattern.compile(regex); 
+		Matcher matcher = pattern.matcher((CharSequence)id); 
+		return matcher.matches(); 
+	} 
+
+//	public static String isValidIdException(String id) throws IdMismatchException {
+//		String vId = ("[0-9][0-9]*");
+//		if(id.matches(vId)) {
+//			throw new DateMismatchException("Enter future date");
+//		}else {
+//			return id;
+//		}
+//	}
+
+
+	//password validation
+	public static int passwordFormat(String password) {
+
+		// total score of password
+		int iPasswordScore = 0;
+
+		if (password.length() < 8)
+			return 0;
+		else if (password.length() >= 8)
+			iPasswordScore += 2;
+		else
+			iPasswordScore += 1;
+
+		// if it contains one digit, add 2 to total score
+		if (password.matches("(?=.*[0-9]).*"))
+			iPasswordScore += 2;
+
+		// if it contains one lower case letter, add 2 to total score
+		if (password.matches("(?=.*[a-z]).*"))
+			iPasswordScore += 2;
+
+		// if it contains one upper case letter, add 2 to total score
+		if (password.matches("(?=.*[A-Z]).*"))
+			iPasswordScore += 2;
+
+		// if it contains one special character, add 2 to total score
+		if (password.matches("(?=.*[~!@#$%^&*()_-]).*"))
+			iPasswordScore += 2;
+
+		return iPasswordScore;
+	}
+} 
+

@@ -1,0 +1,186 @@
+package com.capgemini.fms_jdbc.dao;
+
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import com.capgemini.fms_jdbc.bean.OrderBean;
+import com.capgemini.fms_jdbc.exception.FmsException;
+
+public class OrderDAOImpl implements OrderDAO{
+	//private List<OrderBean> orderBean = new ArrayList<OrderBean>();
+	FileReader reader = null;
+	Properties prop = null;
+	OrderBean user = new OrderBean();
+
+	public OrderDAOImpl() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			reader = new FileReader("db.properties");
+			prop = new Properties();
+			prop.load(reader);
+			Class.forName(prop.getProperty("driverClass"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean addOrder(OrderBean bean) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("insertOrder"));) {
+			pstmt.setInt(1, user.getOrderNo());
+			pstmt.setString(2, user.getCustomerName());
+			pstmt.setString(3, user.getProductName());
+			pstmt.setInt(4, user.getQuantity());
+			pstmt.setString(5, user.getDeliveryDate());
+			pstmt.setString(6, user.getHaulierName());
+
+			int count = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return true;
+	}
+
+	@Override
+	public boolean modifyCustomerName(int orderNo, String customerName) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateOrder1"));) {
+			pstmt.setInt(2, orderNo);
+			pstmt.setString(1, customerName);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyProductName(int orderNo, String productName) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateOrder2"));) {
+			pstmt.setInt(2, orderNo);
+			pstmt.setString(1, productName);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyOrderQuantity(int orderNo, int quantity) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateOrder3"));) {
+			pstmt.setInt(2, orderNo);
+			pstmt.setInt(1, quantity);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyDeliverDate(int orderNo, String deliveryDate) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateOrder4"));) {
+			pstmt.setInt(2, orderNo);
+			pstmt.setString(1, deliveryDate);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyHaulierName(int orderNo, String haulierName) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("updateOrder5"));) {
+			pstmt.setInt(2, orderNo);
+			pstmt.setString(1, haulierName);
+
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteOrder(int orderNo) throws FmsException {
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				PreparedStatement pstmt = con.prepareStatement(prop.getProperty("deleteOrder"));) {
+			pstmt.setInt(1, orderNo);
+
+			int count = pstmt.executeUpdate();
+
+			if (count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id doesn't exist");
+		}
+		return false;
+	}
+
+	@Override
+	public List<OrderBean> getAllOrders() {
+		List<OrderBean> list = new ArrayList<OrderBean>();
+		try (Connection con = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("dbuser"),
+				prop.getProperty("dbpassword"));
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(prop.getProperty("queryOrder"))) {
+			while (rs.next()) {
+				user = new OrderBean();
+				user.setOrderNo(rs.getInt(1));
+				user.setCustomerName(rs.getString(2));
+				user.setProductName(rs.getString(3));
+				user.setQuantity(rs.getInt(4));
+				user.setDeliveryDate(rs.getString(5));
+				user.setHaulierName(rs.getString(6));
+				list.add(user);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

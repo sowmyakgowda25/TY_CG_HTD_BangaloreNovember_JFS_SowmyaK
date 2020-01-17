@@ -1,0 +1,69 @@
+package com.capgemini.fms_springrest.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
+
+import com.capgemini.fms_springrest.dto.ContractBean;
+import com.capgemini.fms_springrest.exception.ContractException;
+
+@Repository
+public class ContractDaoImpl implements ContractDao{
+	EntityManager entityManager=null;
+	EntityTransaction transaction=null;
+	@PersistenceUnit
+	private EntityManagerFactory entityManagerFactory ;
+	public boolean addContractor(ContractBean bean){
+		
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			entityManager.persist(bean);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new ContractException("Contract Number already exist");
+		}
+		//entityManager.close();
+	}
+
+	public boolean deleteContractor(int contractNo){
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			ContractBean record = entityManager.find(ContractBean.class, contractNo);
+			entityManager.remove(record);
+			System.out.println("record deleted");
+			transaction.commit();
+			return true;
+		}catch(Exception e) {
+			transaction.rollback();
+			throw new ContractException("Contract number does not exist");
+		}
+//		entityManager.close();
+//		return false;
+	}
+
+	public List<ContractBean> getAllContractor() {
+		try {
+		EntityManager entityManager= entityManagerFactory.createEntityManager();
+		String jpql="from ContractorBean";
+		Query query = entityManager.createQuery(jpql);
+		List<ContractBean> record=query.getResultList();
+		return record;
+		}catch(Exception e) {
+			transaction.rollback();
+			throw new ContractException("No Data Found");
+		}
+//		entityManager.close();
+//		return null;
+	}
+}

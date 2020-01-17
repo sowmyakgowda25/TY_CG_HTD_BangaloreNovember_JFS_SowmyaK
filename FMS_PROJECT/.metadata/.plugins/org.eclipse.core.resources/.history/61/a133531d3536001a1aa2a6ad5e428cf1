@@ -1,0 +1,29 @@
+package com.capgemini.fms_jpahibernate.service;
+
+import java.util.List;
+
+import com.capgemini.fms_jpahibernate.dto.HaulierBean;
+
+public class HaulierServicesImpl implements HaulierServices{
+
+	public boolean addHaulier(HaulierBean bean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean modifyHaulier(int haulierId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean deleteHaulier(int haulierId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public List<HaulierBean> getAllHaulier(HaulierBean bean) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

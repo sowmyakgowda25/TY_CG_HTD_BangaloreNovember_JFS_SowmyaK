@@ -1,0 +1,20 @@
+package com.capgemini.fms_jpahibernate.factory;
+
+import com.capgemini.fms.service.ContractorServices;
+import com.capgemini.fms.service.ContractorServicesImpl;
+import com.capgemini.fms_jpahibernate.dao.ContractorDAO;
+import com.capgemini.fms_jpahibernate.dao.ContractorDAOImpl;
+
+public class ContractorFactory {
+	public static ContractorServices instanceOfContractorServices() {
+		ContractorServices services = new ContractorServicesImpl();
+		return services;
+	}
+	public static ContractorDAO instanceOfContractorDAOImpl() {
+		ContractorDAO dao = new ContractorDAOImpl();
+		return dao;
+	}
+	public static ContractorDAO getContractorDAO() {
+		return null;
+	}
+}

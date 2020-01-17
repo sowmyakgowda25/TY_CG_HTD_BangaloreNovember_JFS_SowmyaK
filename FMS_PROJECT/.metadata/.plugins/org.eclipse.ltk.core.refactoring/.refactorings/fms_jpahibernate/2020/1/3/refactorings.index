@@ -1,0 +1,45 @@
+1578911553949	Rename package 'com.capgemini.fms.controller'
+1578911603296	Rename package 'com.capgemini.fms.dao'
+1578911622522	Rename package 'com.capgemini.fms_hibernate.dao'
+1578911658316	Rename package 'com.capgemini.fms.dto'
+1578911675076	Rename package 'com.capgemini.fms.factory'
+1578911692401	Rename package 'com.capgemini.fms.service'
+1578911722474	Rename package 'com.capgemini.fms.validations'
+1578936192704	Delete element
+1578936210612	Delete element
+1578936220543	Delete element
+1578936238422	Delete element
+1578937304007	Delete element
+1578938621567	Rename package 'com.capgemini.fms.controller'
+1578938718873	Rename package 'com.capgemini.fms.dao'
+1578938734130	Rename package 'com.capgemini.fms.dto'
+1578938746586	Rename package 'com.capgemini.fms.factory'
+1578938759885	Rename package 'com.capgemini.fms.service'
+1578938773166	Rename package 'com.capgemini.fms.validations'
+1578938802493	Rename package 'com.capgemini.jpahibernate.fms'
+1578940521605	Rename package 'exception'
+1578941234169	Delete element
+1578941294896	Rename package 'service'
+1578941351750	Delete element
+1578941408201	Rename package 'controller'
+1578941923051	Delete element
+1578941960804	Rename package 'dto'
+1578942090547	Delete element
+1579068303928	Rename type 'Contractor'
+1579069261591	Rename type 'AdminDAO'
+1579069275984	Rename type 'AdminDAOImpl'
+1579069291375	Rename type 'ContractorDAO'
+1579069323316	Rename type 'ContractorDAOImpl'
+1579069356118	Rename type 'CustomerDAO'
+1579069367071	Rename type 'CustomerDAOImpl'
+1579069395323	Rename type 'HaulierDAO'
+1579069411404	Rename type 'HaulierDAOImpl'
+1579069427719	Rename type 'LandDAO'
+1579069437565	Rename type 'LandDAOImpl'
+1579069447768	Rename type 'ProductDAO'
+1579069457364	Rename type 'ProductDAOImpl'
+1579069477695	Rename type 'ContractorBean'
+1579069541452	Rename type 'ContractorFactory'
+1579069555124	Rename type 'ContractorServices'
+1579069587816	Rename type 'ContractorServicesImpl'
+1579251525902	Copy compilation unit

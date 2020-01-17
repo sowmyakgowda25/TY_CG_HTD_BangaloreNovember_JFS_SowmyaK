@@ -1,0 +1,5 @@
+package com.capgemini.fms_jdbc.controller;
+
+public class LoginPage {
+
+}

@@ -1,0 +1,20 @@
+package com.capgemini.fms_jpahibernate.factory;
+
+import com.capgemini.fms.service.LandServices;
+import com.capgemini.fms.service.LandServicesImpl;
+import com.capgemini.fms_jpahibernate.dao.LandDAO;
+import com.capgemini.fms_jpahibernate.dao.LandDAOImpl;
+
+public class LandFactory {
+	public static LandServices instanceOfLandServices() {
+		LandServices services = new LandServicesImpl();
+		return services;
+	}
+	public static LandDAO instanceOfLandDAOImpl() {
+		LandDAO dao = new LandDAOImpl();
+		return dao;
+	}
+	public static LandDAO getLandDAO() {
+		return null;
+	}
+}

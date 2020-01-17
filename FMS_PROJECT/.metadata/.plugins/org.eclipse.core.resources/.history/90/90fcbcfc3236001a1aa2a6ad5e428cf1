@@ -1,0 +1,12 @@
+package com.capgemini.fms_jpahibernate.dao;
+
+import java.util.List;
+
+import com.capgemini.fms_jpahibernate.dto.ProductBean;
+
+public interface ProductDAO {
+	public boolean addProduct(ProductBean bean);
+	public boolean modifyProduct(int pId ,String pName);
+	public boolean deleteProduct(int pId);
+	public List<ProductBean> getAllProduct(ProductBean bean);
+}

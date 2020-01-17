@@ -1,0 +1,67 @@
+package com.capgemini.fms_collection.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms_collection.bean.ProductBean;
+import com.capgemini.fms_collection.exception.FmsException;
+
+public class ProductDaoImpl implements ProductDao {
+
+	private List<ProductBean> productBean = new ArrayList<ProductBean>();
+
+	@Override
+	public boolean addProduct(ProductBean bean) throws FmsException {
+		try {
+			for (ProductBean cb : productBean) {
+				if (cb.getProductId() == bean.getProductId()) {
+					return false;
+				}
+			}
+			productBean.add(bean);
+			return true;
+		} catch (Exception e) {
+			throw new FmsException("Id does not exist");
+		}
+		
+	}
+
+	@Override
+	public boolean modifyProduct(int pId, String pName) throws FmsException {
+		try {
+			for (ProductBean cb : productBean) {
+				if (cb.getProductId() == pId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id does nit exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteProduct(int pId) throws FmsException {
+		try {
+			ProductBean bean = null;
+			for (ProductBean cb : productBean) {
+				if (cb.getProductId() == pId) {
+					bean = cb;
+				}
+			}
+			if (bean != null) {
+				productBean.remove(bean);
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id does not exist");
+		}
+		return false;
+	}
+
+	@Override
+	public List<ProductBean> getAllProduct(ProductBean bean) {
+		return productBean;
+	}
+
+}

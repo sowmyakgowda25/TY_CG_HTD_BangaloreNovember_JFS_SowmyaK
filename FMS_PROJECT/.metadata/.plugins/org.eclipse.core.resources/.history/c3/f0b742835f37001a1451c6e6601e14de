@@ -1,0 +1,21 @@
+package com.capgemini.fms_jpahibernate.factory;
+
+import com.capgemini.fms_jpahibernate.dao.HaulierDAO;
+import com.capgemini.fms_jpahibernate.dao.HaulierDAOImpl;
+import com.capgemini.fms_jpahibernate.service.HaulierServices;
+import com.capgemini.fms_jpahibernate.service.HaulierServicesImpl;
+
+public class HaulierFactory {
+	
+	public static HaulierServices instanceOfHaulierServices() {
+		HaulierServices services = new HaulierServicesImpl();
+		return services;
+	}
+	public static HaulierDAO instanceOfHaulierDAOImpl() {
+		HaulierDAO dao = new HaulierDAOImpl();
+		return dao;
+	}
+	public static HaulierDAO getHaulierDAO() {
+		return null;
+	}
+}

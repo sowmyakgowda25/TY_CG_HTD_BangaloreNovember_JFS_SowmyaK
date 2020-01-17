@@ -1,0 +1,31 @@
+package com.capgemini.fms_jpahibernate.dto;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Admin")
+public class AdminBean {
+	
+	@Id
+	@Column
+	private String AdminName;
+	@Column
+	private String password;
+	public String getAdminName() {
+		return AdminName;
+	}
+	public void setAdminName(String adminName) {
+		AdminName = adminName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+}

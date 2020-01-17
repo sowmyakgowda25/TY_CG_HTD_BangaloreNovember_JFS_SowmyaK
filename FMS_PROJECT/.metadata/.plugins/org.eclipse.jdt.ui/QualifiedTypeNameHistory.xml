@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.capgemini.fms_springrest.services.AdminService"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityTransaction"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_jpahibernate.dto.LoginBean"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.persistence.Persistence"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_jpahibernate.exception.FmsException"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManagerFactory"/>
+<fullyQualifiedTypeName name="javax.persistence.Query"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_jpahibernate.service.AdminServicesImpl"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_jdbc.exception.FmsException"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_collection.bean.LoginBean"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springboot.services.AdminService"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springboot.dto.LoginResponse"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springboot.dto.LoginBean"/>
+<fullyQualifiedTypeName name="javax.persistence.Column"/>
+<fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_jpahibernate.service.ProductServicesImpl"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_jpahibernate.service.ProductServices"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springrest.exception.ProductException"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springrest.services.ContractServices"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springrest.services.ContractServicesImpl"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springrest.exception.ContractException"/>
+<fullyQualifiedTypeName name="javax.security.auth.login.LoginException"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springrest.exception.LoginException"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springrest.validations.Validations"/>
+<fullyQualifiedTypeName name="com.capgemini.fms_springrest.exception.CustomerException"/>
+</qualifiedTypeNameHistroy>

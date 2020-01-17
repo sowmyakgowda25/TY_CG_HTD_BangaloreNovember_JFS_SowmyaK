@@ -1,0 +1,56 @@
+package com.capgemini.fms_collection.bean;
+
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class OrderBean implements Serializable{
+	
+	private int orderNo;
+	private String customerName;
+	private String productName;
+	private int quantity;
+	private String deliveryDate;
+	private String HaulierName;
+	@Override
+	public String toString() {
+		return "OrderBean [orderNo=" + orderNo + ", customerName=" + customerName + ", productName=" + productName
+				+ ", quantity=" + quantity + ", deliveryDate=" + deliveryDate + ", HaulierName=" + HaulierName + "]";
+	}
+	public int getOrderNo() {
+		return orderNo;
+	}
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public String getDeliveryDate() {
+		return deliveryDate;
+	}
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+	public String getHaulierName() {
+		return HaulierName;
+	}
+	public void setHaulierName(String haulierName) {
+		HaulierName = haulierName;
+	}
+	
+}

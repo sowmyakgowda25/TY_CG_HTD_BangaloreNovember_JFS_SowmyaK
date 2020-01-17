@@ -1,0 +1,5 @@
+package com.capgemini.fms_collection.controller;
+
+public class LoginPage {
+
+}

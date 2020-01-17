@@ -1,0 +1,66 @@
+package com.capgemini.fms_springrest.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.capgemini.fms_springrest.dao.ContractDao;
+import com.capgemini.fms_springrest.dto.ContractBean;
+import com.capgemini.fms_springrest.exception.ContractException;
+import com.capgemini.fms_springrest.validations.Validations;
+
+@Service
+public class ContractServicesImpl implements ContractServices {
+
+	@Autowired
+	private ContractDao dao;
+
+	public boolean addContractor(ContractBean bean) {
+		String conNum = Integer.toString(bean.getContractorNum());
+		String custId = Integer.toString(bean.getCustomerId());
+		String proId = Integer.toString(bean.getProductId());
+		String haulId = Integer.toString(bean.getHaulierId());
+		String quanty = Integer.toString(bean.getQuantity());
+
+		if (Validations.isValidId(conNum)) {
+			if (Validations.isValidId(custId)) {
+				if (Validations.isValidId(proId)) {
+					if (Validations.isValidId(haulId)) {
+						if (Validations.isValidId(quanty)) {
+							if (Validations.isValidDate(bean.getDeliveryDate())) {
+								return dao.addContractor(bean);
+							} else {
+								throw new ContractException("Enter date in the formate of dd/mm/yyyy");
+							}
+						} else {
+							throw new ContractException("Enter digits only");
+						}
+					} else {
+						throw new ContractException("Enter digits only");
+					}
+				} else {
+					throw new ContractException("Enter digits only");
+				}
+			} else {
+				throw new ContractException("Enter digits only");
+			}
+		} else {
+			throw new ContractException("Enter digits only");
+
+		}
+	}
+
+	public boolean deleteContractor(int contractNo) {
+		String conNum = Integer.toString(contractNo);
+		if (Validations.isValidId(conNum)) {
+			return dao.deleteContractor(contractNo);
+		}else {
+			throw new ContractException("Enter digits only");
+		}
+	}
+
+	public List<ContractBean> getAllContractor() {
+		return dao.getAllContractor();
+	}
+}

@@ -1,0 +1,26 @@
+package com.capgemini.fms.service;
+
+import java.util.List;
+
+import com.capgemini.fms.dto.LandBean;
+import com.capgemini.fms.factory.LandFactory;
+import com.capgemini.fms_jpahibernate.dao.LandDAO;
+
+public class LandServicesImpl implements LandServices{
+	LandDAO dao = LandFactory.instanceOfLandDAOImpl();
+	public boolean addLand(LandBean bean) {
+		return dao.addLand(bean);
+	}
+
+	public boolean modifyLand(int landId) {
+		return dao.modifyLand(landId);
+	}
+
+	public boolean deleteLand(int landId) {
+		return dao.deleteLand(landId);
+	}
+
+	public List<LandBean> getAllLand(LandBean bean) {
+		return dao.getAllLand(bean);
+	}
+}

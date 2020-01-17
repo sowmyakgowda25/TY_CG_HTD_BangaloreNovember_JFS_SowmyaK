@@ -1,0 +1,159 @@
+package com.capgemini.fms_collection.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms_collection.bean.CustomerBean;
+import com.capgemini.fms_collection.exception.FmsException;
+
+public class CustomerDaoImpl implements CustomerDao {
+
+	private List<CustomerBean> customerBean = new ArrayList<CustomerBean>();
+
+	@Override
+	public boolean addCustomer(CustomerBean bean) throws FmsException {
+		try {
+			for (CustomerBean cb : customerBean) {
+				if (cb.getCustId() == bean.getCustId()) {
+					return false;
+				}
+			}
+			customerBean.add(bean);
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return true;
+	}
+
+//	@Override
+//	public boolean modifyCustomer(int custId) {
+//		for(CustomerBean cb:customerBean) {
+//			if(cb.getCustId()==custId) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+
+	@Override
+	public boolean deleteCustomer(int custId) throws FmsException {
+		try {
+			CustomerBean bean = null;
+			for (CustomerBean cb : customerBean) {
+				if (cb.getCustId() == custId) {
+					bean = cb;
+				}
+			}
+			if (bean != null) {
+				customerBean.remove(bean);
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id does not exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerName(int custId, String custName) throws FmsException {
+		try {
+			for (CustomerBean cb : customerBean) {
+				if (cb.getCustId() == custId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerAddress1(int custId, String streetAddress1) throws FmsException {
+		try {
+			for (CustomerBean cb : customerBean) {
+				if (cb.getCustId() == custId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerAddress2(int custId, String streetAddress2) throws FmsException {
+		try {
+			for (CustomerBean cb : customerBean) {
+				if (cb.getCustId() == custId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerTown(int custId, String town) throws FmsException {
+		try {
+			for (CustomerBean cb : customerBean) {
+				if (cb.getCustId() == custId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerEmail(int custId, String email) throws FmsException {
+		try {
+			for (CustomerBean cb : customerBean) {
+				if (cb.getCustId() == custId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerPostalCode(int custId, int postalCode) throws FmsException {
+		try {
+			for (CustomerBean cb : customerBean) {
+				if (cb.getCustId() == custId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyCustomerTelePhoneNum(int custId, long number) throws FmsException {
+		try {
+			for (CustomerBean cb : customerBean) {
+				if (cb.getCustId() == custId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id not modified");
+		}
+		return false;
+	}
+
+	@Override
+	public List<CustomerBean> getAllCustomers() {
+		return customerBean;
+	}
+}

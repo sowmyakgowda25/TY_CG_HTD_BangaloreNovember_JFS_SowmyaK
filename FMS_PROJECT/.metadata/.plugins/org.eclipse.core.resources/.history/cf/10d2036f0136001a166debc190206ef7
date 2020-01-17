@@ -1,0 +1,38 @@
+package com.capgemini.fms_springrest.controller;
+
+import java.util.Arrays;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.capgemini.fms_springrest.dto.LoginBean;
+import com.capgemini.fms_springrest.dto.LoginResponse;
+import com.capgemini.fms_springrest.services.AdminService;
+
+@RestController
+public class Admin {
+	
+	@Autowired
+	private AdminService service;
+	
+	@PostMapping(path = "/adminLogin",produces = MediaType.APPLICATION_JSON_VALUE, 
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public  LoginResponse adminLogin(@RequestBody LoginBean bean){
+		boolean loginBean = service.adminLogin(bean.getAdminName(), bean.getPassword(), bean.getType());
+		
+		LoginResponse response = new LoginResponse();
+		if(loginBean != null) {
+			response.setStatusCode(201);
+			response.setMessage("Success");
+			response.setDiscription("Admin found for Credentilas");
+			response.setBean(Arrays.asList(loginBean));
+		}else {
+			response.setStatusCode(401);
+			response.setMessage("Exception");
+			response.setDiscription("Invalid Credentials");
+		}
+		return response;
+	}
+}

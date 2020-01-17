@@ -1,0 +1,11 @@
+127.0.0.1 - - [15/Jan/2020:23:06:09 +0530] "GET / HTTP/1.1" 404 709
+127.0.0.1 - - [15/Jan/2020:23:09:52 +0530] "GET / HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [15/Jan/2020:23:10:52 +0530] "POST /fms_springrest/clientSignUp HTTP/1.1" 200 97
+0:0:0:0:0:0:0:1 - - [15/Jan/2020:23:13:17 +0530] "POST /fms_springrest/clientLogin HTTP/1.1" 200 161
+127.0.0.1 - - [15/Jan/2020:23:19:11 +0530] "GET / HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [15/Jan/2020:23:19:47 +0530] "POST /fms_springrest/clientLogin HTTP/1.1" 200 99
+0:0:0:0:0:0:0:1 - - [15/Jan/2020:23:21:15 +0530] "POST /fms_springrest/clientSignUp HTTP/1.1" 200 110
+0:0:0:0:0:0:0:1 - - [15/Jan/2020:23:21:34 +0530] "POST /fms_springrest/clientLogin HTTP/1.1" 200 99
+0:0:0:0:0:0:0:1 - - [15/Jan/2020:23:21:40 +0530] "POST /fms_springrest/clientLogin HTTP/1.1" 200 99
+0:0:0:0:0:0:0:1 - - [15/Jan/2020:23:23:04 +0530] "POST /fms_springrest/schedularLogin HTTP/1.1" 404 682
+0:0:0:0:0:0:0:1 - - [15/Jan/2020:23:24:09 +0530] "POST /fms_springrest/clientLogin HTTP/1.1" 200 99

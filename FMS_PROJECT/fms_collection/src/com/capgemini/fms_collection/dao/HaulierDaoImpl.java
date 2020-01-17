@@ -1,0 +1,154 @@
+package com.capgemini.fms_collection.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.capgemini.fms_collection.bean.HaulierBean;
+import com.capgemini.fms_collection.exception.FmsException;
+
+public class HaulierDaoImpl implements HaulierDao {
+	private List<HaulierBean> haulierBean = new ArrayList<HaulierBean>();
+
+	@Override
+	public boolean addHaulier(HaulierBean bean) throws FmsException {
+		try {
+			for (HaulierBean cb : haulierBean) {
+				if (cb.getHaulierId() == bean.getHaulierId()) {
+					return false;
+				}
+			}
+			haulierBean.add(bean);
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return true;
+	}
+
+//	@Override
+//	public boolean modifyHaulier(int haulierId) {
+//		for(HaulierBean cb:haulierBean) {
+//			if(cb.getHaulierId()==haulierId) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+
+	@Override
+	public boolean deleteHaulier(int haulierId) throws FmsException {
+		try {
+			HaulierBean bean = null;
+			for (HaulierBean hb : haulierBean) {
+				if (hb.getHaulierId() == haulierId) {
+					bean = hb;
+				}
+			}
+			if (bean != null) {
+				haulierBean.remove(bean);
+				return true;
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id does not exist");
+		}
+		return false;
+	}
+
+//	@Override
+//	public HaulierBean getHaulier(int haulierId) {
+//		for(HaulierBean hb:haulierBean) {
+//			if(hb.getHaulierId()==haulierId) {
+//				return hb;
+//			}
+//		}
+//		return null;
+//	}
+
+	@Override
+	public boolean modifyHaulierName(int haulierId, String haulierName) throws FmsException {
+		try {
+			for (HaulierBean cb : haulierBean) {
+				if (cb.getHaulierId() == haulierId) {
+					return true;
+				}
+			}
+			return false;
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+	}
+
+	@Override
+	public boolean modifyHaulierAddress(int haulierId, String streetAddress) throws FmsException {
+		try {
+			for (HaulierBean cb : haulierBean) {
+				if (cb.getHaulierId() == haulierId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyHaulierPostalCode(int haulierId, int postalCode) throws FmsException {
+		try {
+			for (HaulierBean cb : haulierBean) {
+				if (cb.getHaulierId() == haulierId) {
+					return true;
+				}
+			}
+			return false;
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+	}
+
+	@Override
+	public boolean modifyHaulierTown(int haulierId, String town) throws FmsException {
+		try {
+			for (HaulierBean cb : haulierBean) {
+				if (cb.getHaulierId() == haulierId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modifyHaulierEmail(int haulierId, String email) throws FmsException {
+		try {
+			for (HaulierBean cb : haulierBean) {
+				if (cb.getHaulierId() == haulierId) {
+					return true;
+				}
+			}
+			return false;
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+	}
+
+	@Override
+	public boolean modifyHaulierTelePhoneNum(int haulierId, long number) throws FmsException {
+		try {
+			for (HaulierBean cb : haulierBean) {
+				if (cb.getHaulierId() == haulierId) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			throw new FmsException("Id already exist");
+		}
+		return false;
+	}
+
+	@Override
+	public List<HaulierBean> getAllHaulier() {
+		return haulierBean;
+	}
+}

@@ -1,0 +1,31 @@
+package com.capgemini.fms_jpahibernate.service;
+
+import java.util.List;
+
+import com.capgemini.fms_jpahibernate.dao.ProductDAO;
+import com.capgemini.fms_jpahibernate.dto.ProductBean;
+import com.capgemini.fms_jpahibernate.exception.FmsException;
+import com.capgemini.fms_jpahibernate.factory.ProductFactory;
+
+
+public class ProductServicesImpl implements ProductServices {
+	
+	ProductDAO dao = ProductFactory.instanceOfProductDAOImpl();
+
+	public boolean addProduct(ProductBean bean) throws FmsException {
+		return dao.addProduct(bean);
+	}
+
+	public boolean modifyProduct(int productId , String productName) throws FmsException {
+		return dao.modifyProduct(productId , productName);
+	}
+
+	public boolean deleteProduct(int productId) throws FmsException {
+		return dao.deleteProduct(productId);
+	}
+
+	public List<ProductBean> getAllProduct(ProductBean bean) {
+		return dao.getAllProduct(bean);
+	}
+
+}
