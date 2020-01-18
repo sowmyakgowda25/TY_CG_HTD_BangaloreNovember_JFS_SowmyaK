@@ -1,0 +1,19 @@
+<div class="col-md-4 card float-left" *ngFor='let product of products'>
+    <div class="card">
+        <div class="card-body">
+            <img src="={{product.url}}" alt="" height="250px" class="card-img-top">
+            <h4 class="text-center">{{product.name}}</h4>
+            <p>Rs: {{product.price}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 card float-left" *ngFor='let customer of customers'>
+<form #addProductForm='ngForm' (ngSubmit)='addProduct(addProductForm)'>
+    <div class="form-group">
+        <img src="={{customer.email}}" alt="" height="250px" class="card-img-top">
+        <h4 class="text-center">{{customer.name}}</h4>
+        <p> {{customer.phone}}</p>
+    </div>
+</form>
+</div>

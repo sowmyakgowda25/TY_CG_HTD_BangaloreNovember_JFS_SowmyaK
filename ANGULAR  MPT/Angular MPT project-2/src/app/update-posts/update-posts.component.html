@@ -1,0 +1,29 @@
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+<div class="col-md-4 offset-md-4 mt-4">
+    <h4 class="text-center text-secondary">Update Posts</h4>
+    <form #editForm='ngForm' (ngSubmit)='updatePost(editForm)'>
+        <input type="hidden" name="id" id="id" #id='ngModel' class="form-control" 
+            [(ngModel)]='postService.selectedPostToUpdate.id'>
+
+        <div class="form-group">
+            <label for="userId">User Id</label>
+            <input type="text" name="userId" id="userId" #userId='ngModel' ngModel class="form-control" required
+            [(ngModel)]='postService.selectedPostToUpdate.userId'>
+        </div>
+
+        <div class="form-group">
+            <label for="title">TitleL</label>
+            <input type="text" name="title" id="title" #title='ngModel' ngModel class="form-control" required
+                [(ngModel)]='postService.selectedPostToUpdate.title'>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="number" name="phone" id="phone" #phone='ngModel' ngModel required pattern="[0-9]{10}"
+                class="form-control"   [(ngModel)]='postService.selectedPostToUpdate.phone'>
+        </div>
+        <button type="submit" class="btn btn-outline-primary float-right">
+            Update Post
+        </button>
+    </form>
+</div>
