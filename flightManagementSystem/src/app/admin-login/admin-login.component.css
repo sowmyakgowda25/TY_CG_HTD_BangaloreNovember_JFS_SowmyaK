@@ -1,0 +1,12 @@
+form {
+    height: 700px;
+    padding-top: 40px;
+   color: white;
+   width: 400px;
+}
+.fms{
+   background-image: url("https://lastmanonthetrail.files.wordpress.com/2017/10/seljalandsfoss.gif");
+   /* background-image: url("https://cdn.pixabay.com/photo/2017/06/07/10/47/elephant-2380009_960_720.jpg"); */
+   background-size: cover;
+   padding-top: 2px;
+}

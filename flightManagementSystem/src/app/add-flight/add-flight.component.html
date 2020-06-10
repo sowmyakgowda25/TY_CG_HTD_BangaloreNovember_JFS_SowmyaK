@@ -1,0 +1,74 @@
+<div class="alert alert-success" *ngIf='success'>{{success}}</div>
+<div class="alert alert-danger" *ngIf='failure'>{{failure}}</div>
+<div class="fms">
+    <div class="col-md-4 offset-md-4 mt-4">
+        <h1> Add Flight</h1>
+        <form #addedFlight='ngForm' (ngSubmit)='addFlight(addedFlight)'>
+            <div class="form-group">
+                <label for="flightNumber">Flight Number</label>
+                <input type="text" name="flightNumber" id="flightNumber" #flightNumber='ngModel' ngModel class="form-control"
+                    required placeholder="Enter flightNumber" pattern="[0-9]+">
+                <div *ngIf='flightNumber.touched && flightNumber.invalid'>
+                    <div class="alert alert-danger" *ngIf='flightNumber.errors.required'>
+                        This field is mandatory
+                    </div>
+                    <div class="alert alert-danger" *ngIf='flightNumber.errors.pattern'>
+                        *Only digits are allowed
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="flightModel">Flight Model</label>
+                <input type="text" name="flightModel" id="flightModel" #flightModel='ngModel' ngModel
+                    class="form-control" required placeholder="Enter User Name" maxlength="25" minlength="3"
+                    pattern="^[a-zA-Z]+(?: [a-zA-z]+)*$">
+                <div *ngIf='flightModel.touched && flightModel.invalid'>
+                    <div class="alert alert-danger" *ngIf='flightModel.errors.required'>
+                        This field is mandatory
+                    </div>
+                    <div class="alert alert-danger" *ngIf='flightModel.errors.minlength'>
+                        *minimum 3 letters are mandatory
+                    </div>
+                    <div class="alert alert-danger" *ngIf='flightModel.errors.pattern'>
+                        *Only alphabets are allowed
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="carrierName">Carrier Name</label>
+                <input type="text" name="carrierName" id="carrierName" #carrierName='ngModel' ngModel class="form-control" required
+                    placeholder="Enter carrierName" pattern="^[a-zA-Z]+(?: [a-zA-z]+)*$">
+                    <div *ngIf='carrierName.touched && carrierName.invalid'>
+                        <div class="alert alert-danger" *ngIf='carrierName.errors.required'>
+                            *Field is Mandatory
+                        </div>
+                        <div class="alert alert-danger" *ngIf='carrierName.errors.pattern'>
+                            *Only alphabets are allowed
+                        </div>
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="seatCapacity">Seat Capacity</label>
+                <input type="text" name="seatCapacity" id="seatCapacity" #seatCapacity='ngModel' ngModel class="form-control"
+                    required placeholder="Enter User Id" pattern="[0-9]+">
+                <div *ngIf='seatCapacity.touched && seatCapacity.invalid'>
+                    <div class="alert alert-danger" *ngIf='seatCapacity.errors.required'>
+                        This field is mandatory
+                    </div>
+                    <div class="alert alert-danger" *ngIf='seatCapacity.errors.pattern'>
+                        *Only digits are allowed
+                    </div>
+                </div>
+            </div>
+               
+            <button type="submit" class="btn btn-outline-light float-right">
+                Add Flight
+            </button>
+            <button type="reset" class="btn btn-outline-light btn-md">
+                Reset
+            </button>
+        </form>
+    </div>
+</div>

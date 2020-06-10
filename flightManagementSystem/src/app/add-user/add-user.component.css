@@ -1,0 +1,11 @@
+form {
+    height: 900px;
+    padding-top: 20px;
+   color: white;
+}
+.fms{
+   background-image: url("https://cdn.pixabay.com/photo/2013/07/18/01/26/larch-163340_960_720.jpg");
+   background-size: cover;
+   padding-top: 2px;
+   color: white;
+}
